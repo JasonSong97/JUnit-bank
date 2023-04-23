@@ -30,6 +30,7 @@ public class SecurityConfig {
       // JWT 서버 (세션 사용 X)
       @Bean
       public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+            log.debug("디버그 : SecurityFilterChain 빈 등록됨 ");
             http.headers().frameOptions().disable(); // iframe 허용 안함
             http.csrf().disable(); // postman 이면 작동안함
             http.cors().configurationSource(configurationSource());
@@ -42,12 +43,13 @@ public class SecurityConfig {
 
             http.authorizeRequests()
                         .antMatchers("/api/s/**").authenticated()
-                        .antMatchers("api/admin/**").hasRole("" + UserEnum.ADMIN)
+                        .antMatchers("/api/admin/**").hasRole("" + UserEnum.ADMIN)
                         .anyRequest().permitAll();
             return http.build();
       }
 
       public CorsConfigurationSource configurationSource() {
+            log.debug("디버그 : CorsConfigurationSource cors 설정이 SecurityFilterChain에 등록됨 ");
             CorsConfiguration configuration = new CorsConfiguration();
             configuration.addAllowedHeader("*"); // 모든 헤더 다 받기
             configuration.addAllowedMethod("*"); // GET POST DELETE PUT (JavaScript 요청 헤더)

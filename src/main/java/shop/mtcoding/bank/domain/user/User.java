@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Builder;
@@ -51,7 +51,7 @@ public class User {
       @Column(nullable = false)
       private LocalDateTime createdAt;
 
-      @LastModifiedBy // insert, update시 날짜 들어감 <- EntityListeners
+      @LastModifiedDate // insert, update시 날짜 들어감 <- EntityListeners
       @Column(nullable = false)
       private LocalDateTime updatedAt;
 

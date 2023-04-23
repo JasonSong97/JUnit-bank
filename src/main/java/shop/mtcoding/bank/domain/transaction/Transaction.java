@@ -7,13 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Builder;
@@ -32,7 +34,10 @@ public class Transaction {
       @GeneratedValue(strategy = GenerationType.IDENTITY)
       private Long id;
 
+      @ManyToOne(fetch = FetchType.LAZY)
       private Account withdrawAccount;
+
+      @ManyToOne(fetch = FetchType.LAZY)
       private Account depositAccount;
 
       private Long amount;
@@ -54,7 +59,7 @@ public class Transaction {
       @Column(nullable = false)
       private LocalDateTime createdAt;
 
-      @LastModifiedBy
+      @LastModifiedDate
       @Column(nullable = false)
       private LocalDateTime updatedAt;
 

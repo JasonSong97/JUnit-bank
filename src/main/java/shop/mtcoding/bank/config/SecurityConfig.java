@@ -41,6 +41,13 @@ public class SecurityConfig {
             http.formLogin().disable(); // 화면 로그인 방식 X
             http.httpBasic().disable(); // httpBasic은 브라우저가 팝업창을 이용해서 사용자 인증을 진행한다.
 
+            // Exception 가로채기: 인증과 권한 실패시 디폴트 값 바꾸기 위해 (통일성)
+            http.exceptionHandling().authenticationEntryPoint((request, response, authException) -> {
+                  // responese.setContentType("application/json; charset=utf-8");
+                  response.setStatus(403);
+                  response.getWriter().println("error"); // 예쁘게 메시지를 보내는 공통적인 DTO 만들기
+            });
+
             http.authorizeRequests()
                         .antMatchers("/api/s/**").authenticated()
                         .antMatchers("/api/admin/**").hasRole("" + UserEnum.ADMIN)

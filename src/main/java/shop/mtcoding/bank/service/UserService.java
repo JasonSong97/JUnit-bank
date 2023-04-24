@@ -38,5 +38,4 @@ public class UserService { // 서비스는 DTO를 받고 DTo로 응답한다.(�
             // 3. DTO 응답
             return new JoinResponseDto(userPS);
       }
-
 }

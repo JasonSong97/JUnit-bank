@@ -57,3 +57,8 @@ CORS는 다음과 같은 방식으로 동작합니다.
 서버는 요청 헤더의 Origin 필드를 확인하여, 접근이 허용되는 도메인인지 확인합니다.
 서버는 접근이 허용되는 도메인일 경우, 응답 헤더에 Access-Control-Allow-Origin 필드를 추가하여 응답을 보냅니다.
 즉, CORS를 적용하려면 서버에서 응답 헤더에 Access-Control-Allow-Origin 필드를 추가하여 스크립트가 접근할 수 있는 도메인을 설정해야 합니다. 이외에도, Access-Control-Allow-Headers 필드를 추가하여 접근이 허용되는 요청 헤더를 설정할 수 있습니다.
+
+### 정규표현식
+
+https://github.com/codingspecialist/junit-bank-security-jwt/blob/master/class-note/regex/regex.pdf
+

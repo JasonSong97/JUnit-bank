@@ -13,6 +13,13 @@ import shop.mtcoding.bank.domain.user.UserEnum;
 
 public class UserRequestDto {
 
+     @Setter
+     @Getter
+     public static class LoginRequestDto { // validation check X: controller가기 전 filter에서 하니까
+          private String username;
+          private String password;
+     }
+
      @Getter
      @Setter
      public static class JoinRequestDto { // 유효성 검사 -> 정규표현식

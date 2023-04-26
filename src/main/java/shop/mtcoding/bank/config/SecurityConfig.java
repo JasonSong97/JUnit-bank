@@ -4,7 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -12,6 +14,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import shop.mtcoding.bank.config.jwt.JwtAuthenticationFilter;
 import shop.mtcoding.bank.domain.user.UserEnum;
 import shop.mtcoding.bank.util.CustomResponseUtil;
 
@@ -26,7 +29,17 @@ public class SecurityConfig {
             return new BCryptPasswordEncoder();
       }
 
-      // JWT 필터 등록이 필요함
+      // JWT 필터 등록
+      public class CustomSecurityFilterManager
+                  extends AbstractHttpConfigurer<CustomSecurityFilterManager, HttpSecurity> {
+            @Override
+            public void configure(HttpSecurity builder) throws Exception {
+                  AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class); // 접근
+                                                                                                                      // 가능
+                  builder.addFilter(new JwtAuthenticationFilter(authenticationManager)); // 필터 작동
+                  super.configure(builder);
+            }
+      }
 
       // JWT 서버 (세션 사용 X)
       @Bean
@@ -41,6 +54,9 @@ public class SecurityConfig {
             // react, app으로 요청할 예정
             http.formLogin().disable(); // 화면 로그인 방식 X
             http.httpBasic().disable(); // httpBasic은 브라우저가 팝업창을 이용해서 사용자 인증을 진행한다.
+
+            // 필터 적용
+            http.apply(new CustomSecurityFilterManager());
 
             // Exception 가로채기: 인증과 권한 실패시 디폴트 값 바꾸기 위해 (통일성)
             http.exceptionHandling().authenticationEntryPoint((request, response, authException) -> {

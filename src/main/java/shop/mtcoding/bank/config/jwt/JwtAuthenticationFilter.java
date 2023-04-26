@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,6 +24,7 @@ import shop.mtcoding.bank.dto.user.UserResponseDto.LoginResponseDto;
 import shop.mtcoding.bank.util.CustomResponseUtil;
 
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+     private final Logger log = LoggerFactory.getLogger(getClass());
 
      private AuthenticationManager authenticationManager;
 
@@ -35,6 +38,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
      @Override
      public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
                throws AuthenticationException {
+          log.debug("디버그 : attemptAuthentication 호출됨");
 
           try {
                ObjectMapper om = new ObjectMapper();
@@ -59,6 +63,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
      @Override
      protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
                FilterChain chain, Authentication authResult) throws IOException, ServletException {
+          log.debug("디버그 : successfulAuthentication 호출됨 로그인 성공");
 
           LoginUser loginUser = (LoginUser) authResult.getPrincipal();
           String jwtToken = JwtProcess.create(loginUser);

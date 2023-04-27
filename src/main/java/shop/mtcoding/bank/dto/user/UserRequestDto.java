@@ -8,13 +8,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import shop.mtcoding.bank.domain.user.User;
 import shop.mtcoding.bank.domain.user.UserEnum;
 
 public class UserRequestDto {
 
-     @ToString
+     @Getter
+     @Setter
+     public static class LoginRequestDto {
+          private String username;
+          private String password;
+     }
+
      @Getter
      @Setter
      public static class JoinRequestDto { // validation check

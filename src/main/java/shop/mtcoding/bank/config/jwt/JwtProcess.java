@@ -27,7 +27,7 @@ public class JwtProcess {
           return JwtVO.TOKEN_PREFIX + jwtToken;
      }
 
-     // JWT 검증 -> return 되는 LoginUser 객체를 강제로 시큐리티 세션에 직접 주입할 예장
+     // JWT 검증 -> return 되는 LoginUser 객체를 강제로 시큐리티 세션에 직접 주입할 예정(강제 로그인)
      public static LoginUser verify(String token) {
           DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC512(JwtVO.SECRET)).build().verify(token); // 검증 안되면 터짐
           // id랑 role 정보만 넣어라

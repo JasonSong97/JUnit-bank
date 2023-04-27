@@ -28,6 +28,7 @@ public class SecurityConfig {
 
      @Bean // Jwt 서버만듬: 세션 사용 X
      public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+          log.debug("디버그 : filterChain 빈 등록됨");
           http.headers().frameOptions().disable(); // iframe 허용 X
           http.csrf().disable(); // postman 작동 안함
           http.cors().configurationSource(configurationSource()); // 자바스크립트 공격 막기
@@ -46,6 +47,7 @@ public class SecurityConfig {
      }
 
      public CorsConfigurationSource configurationSource() { // 자바스크립트로 들어오는 요청
+          log.debug("디버그 : configurationSource cors 설정이 SecurityFilterChain 등록됨");
           CorsConfiguration configuration = new CorsConfiguration();
           configuration.addAllowedHeader("*");
           configuration.addAllowedMethod("*"); // GET POST PUT DELETE 모든 요청 허용

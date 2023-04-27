@@ -41,8 +41,6 @@
   </body>
 </html>
 ```
-
-
 태그를 사용하면 웹페이지 안에 다른 웹페이지를 삽입하여 보여줄 수 있습니다. 주로 광고나 외부 컨텐츠 등을 삽입하기 위해 사용됩니다. 예를 들어, 다른 웹사이트에서 제공하는 지도 서비스나 동영상을 현재 웹페이지에 삽입하여 보여줄 수 있습니다.
 
 태그는 다음과 같은 속성을 가집니다.
@@ -69,6 +67,50 @@ CORS는 다음과 같은 방식으로 동작합니다.
 서버는 요청 헤더의 Origin 필드를 확인하여, 접근이 허용되는 도메인인지 확인합니다.
 서버는 접근이 허용되는 도메인일 경우, 응답 헤더에 Access-Control-Allow-Origin 필드를 추가하여 응답을 보냅니다.
 즉, CORS를 적용하려면 서버에서 응답 헤더에 Access-Control-Allow-Origin 필드를 추가하여 스크립트가 접근할 수 있는 도메인을 설정해야 합니다. 이외에도, Access-Control-Allow-Headers 필드를 추가하여 접근이 허용되는 요청 헤더를 설정할 수 있습니다.
+
+### Security 기본 설정
+```java
+@Bean // Jwt 서버만듬: 세션 사용 X
+     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+          http.headers().frameOptions().disable(); // iframe 허용 X
+          http.csrf().disable(); // postman 작동 안함
+          http.cors().configurationSource(configurationSource()); // 자바스크립트 공격 막기
+
+          http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // JessionId를 서버쪽에서 관리 안한다는
+                                                                                           // 의미
+          // 리엑트, 엡으로 요청할 예정
+          http.formLogin().disable(); // 화면 로그인 사용 X
+          http.httpBasic().disable(); // httpBasic: 브라우저가 팝업창을 이용해서 인증을 진행한다.
+          http.authorizeRequests()
+                    .antMatchers("/api/s/**").authenticated()
+                    .antMatchers("/api/admin/**").hasRole("" + UserEnum.ADMIN)
+                    .anyRequest().permitAll();
+
+          return http.build();
+     }
+
+     public CorsConfigurationSource configurationSource() { // 자바스크립트로 들어오는 요청
+          CorsConfiguration configuration = new CorsConfiguration();
+          configuration.addAllowedHeader("*");
+          configuration.addAllowedMethod("*"); // GET POST PUT DELETE 모든 요청 허용
+          configuration.addAllowedOriginPattern("*"); // 모든 IP 주소 허용(프론트 엔드 IP만 허용 react)
+          configuration.setAllowCredentials(true); // client 쪽에서 쿠키 요청 허용
+
+          UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+          source.registerCorsConfiguration("/**", configuration); // 모든 요청에 해당 과정을 넣겠다.
+          return source;
+     }
+```
+
+
+
+
+
+
+
+
+
+
 
 ### 정규표현식
 

@@ -20,7 +20,7 @@ import shop.mtcoding.bank.config.dummy.DummyObject;
 import shop.mtcoding.bank.domain.user.UserRepository;
 import shop.mtcoding.bank.dto.user.UserRequestDto.JoinRequestDto;
 
-@Transactional
+@Transactional // <--
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
 public class UserControllerTest extends DummyObject { // 통합테스트

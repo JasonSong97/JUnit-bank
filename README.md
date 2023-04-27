@@ -25,8 +25,6 @@
      }
 ```
 
-
-
 ### iframe
 
  > iframe(inline frame)은 HTML에서 다른 HTML 문서나 외부 웹페이지를 현재 문서 안에서 삽입하는 태그입니다. 즉, 하나의 HTML 문서 안에 다른 HTML 문서를 포함시켜 화면에 노출시킬 수 있습니다.

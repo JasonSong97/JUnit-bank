@@ -75,9 +75,8 @@ CORS는 다음과 같은 방식으로 동작합니다.
           http.headers().frameOptions().disable(); // iframe 허용 X
           http.csrf().disable(); // postman 작동 안함
           http.cors().configurationSource(configurationSource()); // 자바스크립트 공격 막기
-
-          http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // JessionId를 서버쪽에서 관리 안한다는
-                                                                                           // 의미
+          // JessionId를 서버쪽에서관리안한다는의미                                                              
+          http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); 
           // 리엑트, 엡으로 요청할 예정
           http.formLogin().disable(); // 화면 로그인 사용 X
           http.httpBasic().disable(); // httpBasic: 브라우저가 팝업창을 이용해서 인증을 진행한다.
@@ -95,23 +94,11 @@ CORS는 다음과 같은 방식으로 동작합니다.
           configuration.addAllowedMethod("*"); // GET POST PUT DELETE 모든 요청 허용
           configuration.addAllowedOriginPattern("*"); // 모든 IP 주소 허용(프론트 엔드 IP만 허용 react)
           configuration.setAllowCredentials(true); // client 쪽에서 쿠키 요청 허용
-
           UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
           source.registerCorsConfiguration("/**", configuration); // 모든 요청에 해당 과정을 넣겠다.
           return source;
      }
 ```
-
-
-
-
-
-
-
-
-
-
-
 ### 정규표현식
 
 https://github.com/codingspecialist/junit-bank-security-jwt/blob/master/class-note/regex/regex.pdf

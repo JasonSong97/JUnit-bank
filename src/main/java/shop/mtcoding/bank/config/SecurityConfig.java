@@ -38,6 +38,14 @@ public class SecurityConfig {
           // 리엑트, 엡으로 요청할 예정
           http.formLogin().disable(); // 화면 로그인 사용 X
           http.httpBasic().disable(); // httpBasic: 브라우저가 팝업창을 이용해서 인증을 진행한다.
+
+          // Exception 가로채기
+          http.exceptionHandling().authenticationEntryPoint((request, response, authException) -> {
+               // response.setContentType("application/json; charset=utf-8");
+               response.setStatus(403);
+               response.getWriter().println("error");
+          });
+
           http.authorizeRequests()
                     .antMatchers("/api/s/**").authenticated()
                     .antMatchers("/api/admin/**").hasRole("" + UserEnum.ADMIN)

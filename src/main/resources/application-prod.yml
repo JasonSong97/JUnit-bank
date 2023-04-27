@@ -6,7 +6,7 @@ server:
       force: true
 
 spring:
-  datasource:
+  datasource: # OS의 쉘
     url: jdbc:mariadb://${rds.hostname}:${rds.port}/${rds.db.name}
     driver-class-name: org.mariadb.jdbc.Driver
     username: ${rds.username}

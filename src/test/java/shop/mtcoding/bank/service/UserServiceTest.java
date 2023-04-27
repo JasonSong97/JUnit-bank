@@ -15,14 +15,14 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import shop.mtcoding.bank.config.dummy.DummyObject;
 import shop.mtcoding.bank.domain.user.User;
-import shop.mtcoding.bank.domain.user.UserEnum;
 import shop.mtcoding.bank.domain.user.UserRepository;
-import shop.mtcoding.bank.service.UserService.JoinRequestDto;
-import shop.mtcoding.bank.service.UserService.JoinResponseDto;
+import shop.mtcoding.bank.dto.user.UserRequestDto.JoinRequestDto;
+import shop.mtcoding.bank.dto.user.UserResponseDto.JoinResponseDto;
 
 @ExtendWith(MockitoExtension.class) // Service 가짜 환경에서 실행
-public class UserServiceTest {
+public class UserServiceTest extends DummyObject {
 
      @InjectMocks // 가짜
      private UserService userService;
@@ -46,17 +46,9 @@ public class UserServiceTest {
           when(userRepository.findByUsername(any())).thenReturn(Optional.empty());
           // when(userRepository.findByUsername(any())).thenReturn(Optional.of(new
           // User())); // 에러 발생
+
           // stub 2
-          User ssar = User.builder()
-                    .id(1L)
-                    .username("ssar")
-                    .password("1234")
-                    .email("ssar@nate.com")
-                    .fullname("쌀")
-                    .role(UserEnum.CUSTOMER)
-                    .createdAt(LocalDateTime.now())
-                    .updatedAt(LocalDateTime.now())
-                    .build();
+          User ssar = newMockUser(1L, "ssar", "쌀");
           when(userRepository.save(any())).thenReturn(ssar);
 
           // when
@@ -64,7 +56,7 @@ public class UserServiceTest {
           System.out.println("테스트 : " + joinResponseDto.toString());
 
           // then
-          assertThat(joinResponseDto.getId()).isEqualTo(1L)
+          assertThat(joinResponseDto.getId()).isEqualTo(1L);
           assertThat(joinResponseDto.getUsername()).isEqualTo("ssar");
      }
 }

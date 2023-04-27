@@ -8,13 +8,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 import shop.mtcoding.bank.domain.user.User;
-import shop.mtcoding.bank.domain.user.UserEnum;
 import shop.mtcoding.bank.domain.user.UserRepository;
+import shop.mtcoding.bank.dto.user.UserRequestDto.JoinRequestDto;
+import shop.mtcoding.bank.dto.user.UserResponseDto.JoinResponseDto;
 import shop.mtcoding.bank.handler.ex.CustomApiException;
 
 @RequiredArgsConstructor
@@ -38,41 +36,5 @@ public class UserService { // 서비스는 DTO요청을 받고 DTO로 응답을 
 
           // 3. dto 응답
           return new JoinResponseDto(userPS);
-     }
-
-     @ToString
-     @Getter
-     @Setter
-     public static class JoinRequestDto { // validation check
-          private String username;
-          private String password;
-          private String email;
-          private String fullname;
-
-          public User toEntity(BCryptPasswordEncoder passwordEncoder) {
-               return User.builder()
-                         .username(username)
-                         .password(passwordEncoder.encode(password))
-                         .email(email)
-                         .fullname(fullname)
-                         .role(UserEnum.CUSTOMER)
-                         .build();
-          }
-
-     }
-
-     @Getter
-     @Setter
-     public static class JoinResponseDto {
-          private Long id;
-          private String username;
-          private String fullname;
-
-          public JoinResponseDto(User user) {
-               this.id = user.getId();
-               this.username = user.getUsername();
-               this.fullname = user.getFullname();
-          }
-
      }
 }

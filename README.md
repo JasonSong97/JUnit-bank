@@ -119,15 +119,15 @@ public class ResponseDto<T> {
 
 ```java
 @ExtendWith(MockitoExtension.class) // Service 가짜 환경에서 실행
-public class UserServiceTest {
+public class UserServiceTest extends DummyObject {
 
-     @InjectMocks
+     @InjectMocks // 가짜
      private UserService userService;
 
-     @Mock
+     @Mock // 가짜
      private UserRepository userRepository;
-     .
-     .
-     .
+
+     @Spy // 진짜 꺼내서 가짜에 넣는다.
+     private BCryptPasswordEncoder passwordEncoder;
 }
 ```

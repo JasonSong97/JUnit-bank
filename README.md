@@ -103,3 +103,14 @@ CORS는 다음과 같은 방식으로 동작합니다.
 
 https://github.com/codingspecialist/junit-bank-security-jwt/blob/master/class-note/regex/regex.pdf
 
+### 서버에러
+> 서버는 일관성있게 에러가 리턴되어야한다. 내가 모르는 에러가 프로트에게 전달되면 안된다. 내가 전부 제어할 수 있어야한다.
+```java
+@Getter
+@RequiredArgsConstructor // RequiredArgsConstructor: 응답의 DTO는 1번 만들면 수정할 일이 없어서
+public class ResponseDto<T> {
+     private final Integer code; // -1, 1
+     private final String msg;
+     private final T data;
+}
+```

@@ -1,5 +1,6 @@
 package shop.mtcoding.bank.config;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import org.junit.jupiter.api.DisplayName;
@@ -31,7 +32,7 @@ public class SecurityConfigTest {
           System.out.println("테스트 : " + httpStatusCode);
 
           // then
-
+          assertThat(httpStatusCode).isEqualTo(401);
      }
 
      @DisplayName("권한테스트")
@@ -40,8 +41,13 @@ public class SecurityConfigTest {
           // given
 
           // when
+          ResultActions resultActions = mvc.perform(get("/api/admin/hello"));
+          String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+          int httpStatusCode = resultActions.andReturn().getResponse().getStatus();
+          System.out.println("테스트 : " + responseBody);
+          System.out.println("테스트 : " + httpStatusCode);
 
           // then
-
+          assertThat(httpStatusCode).isEqualTo(401);
      }
 }

@@ -30,7 +30,7 @@ public class LoginUser implements UserDetails { // 시큐리티를 알면 알 �
 
      @Override
      public String getUsername() {
-          return user.getUsername()
+          return user.getUsername();
      }
 
      @Override

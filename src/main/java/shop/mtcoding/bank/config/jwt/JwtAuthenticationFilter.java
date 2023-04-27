@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,7 +25,8 @@ import shop.mtcoding.bank.dto.user.UserResponseDto.LoginResponseDto;
 import shop.mtcoding.bank.util.CustomResponseUtil;
 
 // UsernamePasswordAuthenticationFilter 들어가보기
-public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter { // filter: 컨트롤러 가기전에 발동 + filter 등록!
+// filter: 컨트롤러 가기전에 발동 + filter 등록!
+public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter { // 인증 필터
      private final Logger log = LoggerFactory.getLogger(getClass());
 
      private AuthenticationManager authenticationManager;
@@ -51,7 +53,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                // UserDetailsService의 loadUserByUsername 호출(강제 로그인)
                // 강제 로그인 이유: Jwt를 사용해도, 컨트롤러 진입하면 시큐리티의 권한체크, 인증체크 도움을 받을 수 있게 세션을 만든다.
                // "/api/s/**", "/api/admin/**", ...
-               // 이 세션의 유효기간: request, response하면 끝
+               // 이 세션의 유효기간: request, response하면 끝 -> successfulAuthentication ->
+               // CustomResponseUtil.success(response, loginResponseDto);
                Authentication authentication = authenticationManager.authenticate(authenticationToken);
                return authentication;
           } catch (Exception e) {
@@ -64,7 +67,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
      @Override
      protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
                AuthenticationException failed) throws IOException, ServletException {
-          CustomResponseUtil.unAuthentication(response, "로그인 실패");
+          CustomResponseUtil.fail(response, "로그인 실패", HttpStatus.UNAUTHORIZED);
 
      }
 
@@ -78,7 +81,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
           response.addHeader(JwtVO.HEADER, jwtToken);
 
           LoginResponseDto loginResponseDto = new LoginResponseDto(loginUser.getUser());
-          CustomResponseUtil.success(response, loginResponseDto);
+          CustomResponseUtil.success(response, loginResponseDto); // 세션종료
      }
 
 }

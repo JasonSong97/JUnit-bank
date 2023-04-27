@@ -34,7 +34,7 @@ public class JwtProcess {
           Long id = decodedJWT.getClaim("id").asLong();
           String role = decodedJWT.getClaim("role").asString();
           User user = User.builder().id(id).role(UserEnum.valueOf(role)).build();
-          LoginUser loginUser = new LoginUser(user);
+          LoginUser loginUser = new LoginUser(user); // id + role 만 들어간다.
           return loginUser;
      }
 }

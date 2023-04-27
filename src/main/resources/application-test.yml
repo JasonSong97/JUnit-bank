@@ -20,7 +20,7 @@ spring:
       ddl-auto: create
     properties:
       '[hibernate.default_batch_fetch_size]': 100
-      '[hibernate.format_sql]': true
+      '[hibernate.format_sql]': true # 이쁘게 만드는거
     show-sql: true
   output:
     ansi:

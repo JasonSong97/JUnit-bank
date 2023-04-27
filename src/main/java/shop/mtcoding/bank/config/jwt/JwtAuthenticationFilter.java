@@ -48,7 +48,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                // 2. 파싱 -> LoginRequestDto
                LoginRequestDto loginRequestDto = om.readValue(request.getInputStream(), LoginRequestDto.class);
 
-               // 3. 인증관련 토큰 만들기
+               // 3. 강제로그인
                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                          loginRequestDto.getUsername(), loginRequestDto.getPassword());
 

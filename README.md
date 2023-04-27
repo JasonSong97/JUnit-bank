@@ -4,14 +4,28 @@
 - @EnableJpaAuditing (Main class)
 - @EntityListeners(AuditingEntityListener.class) (Entity class)
 ```java
-      @CreatedDate
+      @CreatedDate // insert
       @Column(nullable = false)
       private LocalDateTime createdAt;
 
-      @LastModifiedBy
+      @LastModifiedBy // insert, update
       @Column(nullable = false)
       private LocalDateTime updatedAt;
 ```
+### @Builder와 @NoArgsConstructor
+- @NoArgsConstructor (User.class)
+  - 스프링이 User 객체 생성할 때 빈생성자로 new를 하기 때문
+```java
+@Builder
+     public User(Long id, String username, String password, String email, String fullname, UserEnum role,
+               LocalDateTime createdAt, LocalDateTime updatedAt) {
+          .
+          .
+          .
+     }
+```
+
+
 
 ### iframe
 

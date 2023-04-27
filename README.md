@@ -114,3 +114,20 @@ public class ResponseDto<T> {
      private final T data;
 }
 ```
+
+### 가짜 환경
+
+```java
+@ExtendWith(MockitoExtension.class) // Service 가짜 환경에서 실행
+public class UserServiceTest {
+
+     @InjectMocks
+     private UserService userService;
+
+     @Mock
+     private UserRepository userRepository;
+     .
+     .
+     .
+}
+```

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import shop.mtcoding.bank.domain.user.User;
 import shop.mtcoding.bank.domain.user.UserEnum;
 import shop.mtcoding.bank.domain.user.UserRepository;
@@ -39,6 +40,7 @@ public class UserService { // 서비스는 DTO요청을 받고 DTO로 응답을 
           return new JoinResponseDto(userPS);
      }
 
+     @ToString
      @Getter
      @Setter
      public static class JoinRequestDto { // validation check

@@ -1,6 +1,7 @@
 package shop.mtcoding.bank.dto.user;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -17,6 +18,7 @@ public class UserRequestDto {
      @Setter
      public static class JoinRequestDto { // validation check
           @NotEmpty // null 이거나, 공백일 수 없다.
+          @Pattern(regexp = "", message = "영문/숫자 2~20자 이내로 작성해주세요.")
           private String username;
           @NotEmpty
           private String password;

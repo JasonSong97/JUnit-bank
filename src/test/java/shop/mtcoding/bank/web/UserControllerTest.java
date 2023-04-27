@@ -20,7 +20,7 @@ import shop.mtcoding.bank.config.dummy.DummyObject;
 import shop.mtcoding.bank.domain.user.UserRepository;
 import shop.mtcoding.bank.dto.user.UserRequestDto.JoinRequestDto;
 
-@Transactional // <--
+@Transactional
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
 public class UserControllerTest extends DummyObject { // 통합테스트
@@ -34,7 +34,7 @@ public class UserControllerTest extends DummyObject { // 통합테스트
 
      @BeforeEach
      public void setUp() {
-          dataSettig();
+          userRepository.save(newUser("ssar", "쌀"));
      }
 
      @Test
@@ -80,9 +80,5 @@ public class UserControllerTest extends DummyObject { // 통합테스트
 
           // then
           resultActions.andExpect(status().isBadRequest());
-     }
-
-     private void dataSettig() {
-          userRepository.save(newUser("ssar", "쌀"));
      }
 }

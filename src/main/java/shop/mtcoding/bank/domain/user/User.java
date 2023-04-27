@@ -50,6 +50,7 @@ public class User {
      @CreatedDate // insert
      @Column(nullable = false)
      private LocalDateTime createdAt;
+
      @LastModifiedDate // insert, update
      @Column(nullable = false)
      private LocalDateTime updatedAt;

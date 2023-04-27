@@ -43,10 +43,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                throws AuthenticationException {
           log.debug("디버그 : attemptAuthentication 호출됨");
           try {
+               // 1. username, password 받기
                ObjectMapper om = new ObjectMapper();
+               // 2. 파싱 -> LoginRequestDto
                LoginRequestDto loginRequestDto = om.readValue(request.getInputStream(), LoginRequestDto.class);
 
-               // 강제 로그인
+               // 3. 인증관련 토큰 만들기
                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                          loginRequestDto.getUsername(), loginRequestDto.getPassword());
 
@@ -55,8 +57,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                // "/api/s/**", "/api/admin/**", ...
                // 이 세션의 유효기간: request, response하면 끝 -> successfulAuthentication ->
                // CustomResponseUtil.success(response, loginResponseDto);
+
+               // 4. loadByUsername -> 강제로그인
                Authentication authentication = authenticationManager.authenticate(authenticationToken);
-               return authentication;
+               return authentication; // authentication.getPrincipal(): loginUser
           } catch (Exception e) {
                // unsuccessfulAuthentication 호출
                throw new InternalAuthenticationServiceException(e.getMessage());

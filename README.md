@@ -131,3 +131,6 @@ public class UserServiceTest extends DummyObject {
      private BCryptPasswordEncoder passwordEncoder;
 }
 ```
+
+### 인증과 인가
+> 사진 필요

@@ -123,4 +123,53 @@ public class AccountServiceTest extends DummyObject {
           assertThat(ssarAccount1.getBalance()).isEqualTo(1100L);
           assertThat(accountDepositResponseDto.getTransaction().getDepositAccountBalance()).isEqualTo(1100L);
      }
+
+     @Test
+     public void 계좌입금2_test() throws Exception {
+          // given
+          AccountDepositRequestDto accountDepositRequestDto = new AccountDepositRequestDto();
+          accountDepositRequestDto.setNumber(1111L);
+          accountDepositRequestDto.setAmount(100L);
+          accountDepositRequestDto.setGubun("DEPOSIT");
+          accountDepositRequestDto.setTel("01088887777");
+
+          // stub 1
+          User ssar = newMockUser(1L, "ssar", "쌀"); // 실행됨
+          Account ssarAccount1 = newMockAccount(1L, 1111L, 1000L, ssar); // 실행됨 - ssarAccount1 -> 1000원
+          when(accountRepository.findByNumber(any())).thenReturn(Optional.of(ssarAccount1));
+
+          // stub 2
+          User ssar2 = newMockUser(1L, "ssar", "쌀");
+          Account ssarAccount2 = newMockAccount(1L, 1111L, 1000L, ssar2);
+          Transaction transaction = newMockDepositTransaction(1L, ssarAccount2); // 실행됨 - (ssarAccount1 -> 1100원)
+          when(transactionRepository.save(any())).thenReturn(transaction);
+
+          // when
+          AccountDepositResponseDto accountDepositResponseDto = accountService.계좌입금(accountDepositRequestDto);
+          String responseBody = om.writeValueAsString(accountDepositResponseDto);
+          System.out.println("테스트 : " + responseBody);
+          // then
+          assertThat(ssarAccount1.getBalance()).isEqualTo(1100L);
+     }
+
+     @Test
+     public void 계좌입금_test3() throws Exception {
+          // given
+          Account account = newMockAccount(1L, 1111L, 1000L, null);
+          Long amount = 0L;
+          // when
+          if (amount <= 0L) {
+               throw new CustomApiException("0원 이하의 금액을 입금할 수 없습니다.");
+          }
+          account.deposit(100L);
+
+          // then
+          assertThat(account.getBalance()).isEqualTo(1100L);
+     }
 }
+
+// Git check
+// 계좌 출금_테스트 (서비스)
+// 계좌 이체_테스트 (서비스)
+// 계좌목록보기_유저별_테스트 (서비스)
+// 계좌상세보기_테스트 (서비스)

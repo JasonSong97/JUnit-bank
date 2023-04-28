@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,10 +18,9 @@ import lombok.RequiredArgsConstructor;
 import shop.mtcoding.bank.config.auth.LoginUser;
 import shop.mtcoding.bank.dto.ResponseDto;
 import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountSaveReqeustDto;
+import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountListResponseDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountSaveResponseDto;
-import shop.mtcoding.bank.handler.ex.CustomForbiddenException;
 import shop.mtcoding.bank.service.AccountService;
-import shop.mtcoding.bank.service.AccountService.AccountListResponseDto;
 
 @RequiredArgsConstructor
 @RequestMapping("/api")
@@ -42,5 +42,11 @@ public class AccountController {
      public ResponseEntity<?> findUserAccount(@AuthenticationPrincipal LoginUser loginUser) {
           AccountListResponseDto accountListResponseDto = accountService.계좌목록보기_유저별(loginUser.getUser().getId());
           return new ResponseEntity<>(new ResponseDto<>(1, "계획목록보기_유저별 성공", accountListResponseDto), HttpStatus.OK);
+     }
+
+     @DeleteMapping("/s/account/{number}")
+     public ResponseEntity<?> deleteAccount(@PathVariable Long number, @AuthenticationPrincipal LoginUser loginUser) {
+          accountService.계좌삭제(number, loginUser.getUser().getId());
+          return new ResponseEntity<>(new ResponseDto<>(1, "계좌삭제 완료", null), HttpStatus.OK);
      }
 }

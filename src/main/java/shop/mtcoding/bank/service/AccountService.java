@@ -27,21 +27,21 @@ public class AccountService {
      private final UserRepository userRepository;
      private final AccountRepository accountRepository;
 
-     public AccountListReqeustDto 계좌목록보기_유저별(Long userId) {
+     public AccountListResponseDto 계좌목록보기_유저별(Long userId) {
           User userPS = userRepository.findById(userId).orElseThrow(
                     () -> new CustomApiException("유저를 찾을 수 없습니다."));
           // 유저의 모든 계좌목록
           List<Account> accountListPS = accountRepository.findByUser_id(userId);
-          return new AccountListReqeustDto(userPS, accountListPS);
+          return new AccountListResponseDto(userPS, accountListPS);g
      }
 
      @Getter
      @Setter
-     public static class AccountListReqeustDto {
+     public static class AccountListResponseDto {
           private String fullname;
           private List<AccountDto> accounts = new ArrayList<>();
 
-          public AccountListReqeustDto(User user, List<Account> accounts) {
+          public AccountListResponseDto(User user, List<Account> accounts) {
                this.fullname = user.getFullname();
                this.accounts = accounts.stream().map(AccountDto::new).collect(Collectors.toList());
                // [account, account]

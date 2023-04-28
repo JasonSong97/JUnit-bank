@@ -133,4 +133,3 @@ public class UserServiceTest extends DummyObject {
 ```
 
 ### 인증과 인가
-> 사진 필요

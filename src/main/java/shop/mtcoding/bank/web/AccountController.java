@@ -21,6 +21,8 @@ import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountSaveReqeustDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountListResponseDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountSaveResponseDto;
 import shop.mtcoding.bank.service.AccountService;
+import shop.mtcoding.bank.service.AccountService.AccountDepositRequestDto;
+import shop.mtcoding.bank.service.AccountService.AccountDepositResponseDto;
 
 @RequiredArgsConstructor
 @RequestMapping("/api")
@@ -48,5 +50,12 @@ public class AccountController {
      public ResponseEntity<?> deleteAccount(@PathVariable Long number, @AuthenticationPrincipal LoginUser loginUser) {
           accountService.계좌삭제(number, loginUser.getUser().getId());
           return new ResponseEntity<>(new ResponseDto<>(1, "계좌삭제 완료", null), HttpStatus.OK);
+     }
+
+     @PostMapping("/account/deposit")
+     public ResponseEntity<?> depositAccount(@RequestBody @Valid AccountDepositRequestDto accountDepositRequestDto,
+               BindingResult bindingResult) {
+          AccountDepositResponseDto accountDepositResponseDto = accountService.계좌입금(accountDepositRequestDto);
+          return new ResponseEntity<>(new ResponseDto<>(1, "계좌 입금 성공", accountDepositResponseDto), HttpStatus.CREATED);
      }
 }

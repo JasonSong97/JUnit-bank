@@ -132,10 +132,11 @@ public class AccountService {
                private String sender;
                private String reciver;
                private Long amount;
-               @JsonIgnore
-               private Long depositAccountBalance; // client 전달 X, 서비스단 테스트용
                private String tel;
                private String createdAt;
+
+               @JsonIgnore
+               private Long depositAccountBalance; // client 전달 X, 서비스단 테스트용
 
                public TransactionDto(Transaction transaction) {
                     this.id = transaction.getId();

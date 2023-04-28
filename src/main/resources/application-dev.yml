@@ -29,5 +29,5 @@ spring:
 logging:
   level:
     '[shop.mtcoding.bank]': DEBUG # 패키지명
-
+    '[org.hibernate.type]': TRACE
     

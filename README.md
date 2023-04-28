@@ -135,3 +135,15 @@ public class UserServiceTest extends DummyObject {
 ### 인증과 인가
 ![image](https://user-images.githubusercontent.com/107292103/235059177-20f31415-86cb-4ab1-9ccf-035554daa776.png)
 ![image](https://user-images.githubusercontent.com/107292103/235059228-c8e38215-22bf-4d50-a539-e97e0040953f.png)
+
+### trasaction -> teardown
+- ~ControllerTest (@Sql("classpath:db/teardown.sql") 추가)
+
+```sql
+SET REFERENTIAL_INTEGRITY FALSE; -- 비활성화
+truncate table transaction_tb; -- truncate: 테이블 내용만 지우기
+truncate table account_tb;
+truncate table user_tb;
+SET REFERENTIAL_INTEGRITY TRUE; -- 활성화
+-- 컨트롤러 테스트 -> 다음과 같이
+```

@@ -133,4 +133,5 @@ public class UserServiceTest extends DummyObject {
 ```
 
 ### 인증과 인가
-> 사진 필요
+![image](https://user-images.githubusercontent.com/107292103/235059177-20f31415-86cb-4ab1-9ccf-035554daa776.png)
+![image](https://user-images.githubusercontent.com/107292103/235059228-c8e38215-22bf-4d50-a539-e97e0040953f.png)

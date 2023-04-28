@@ -1,7 +1,11 @@
 package shop.mtcoding.bank.web;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import javax.persistence.EntityManager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,9 +24,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.bank.config.dummy.DummyObject;
+import shop.mtcoding.bank.domain.account.Account;
+import shop.mtcoding.bank.domain.account.AccountRepository;
 import shop.mtcoding.bank.domain.user.User;
 import shop.mtcoding.bank.domain.user.UserRepository;
 import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountSaveReqeustDto;
+import shop.mtcoding.bank.handler.ex.CustomApiException;
 
 @Transactional
 @ActiveProfiles("test")
@@ -36,10 +43,18 @@ public class AccountControllerTest extends DummyObject {
      private ObjectMapper om;
      @Autowired
      private UserRepository userRepository;
+     @Autowired
+     private AccountRepository accountRepository;
+     @Autowired
+     private EntityManager em;
 
      @BeforeEach
      public void setUp() {
-          User user = userRepository.save(newUser("ssar", "쌀"));
+          User ssar = userRepository.save(newUser("ssar", "쌀"));
+          User cos = userRepository.save(newUser("cos", "코스"));
+          Account ssarAccount1 = accountRepository.save(newAccount(1111L, ssar));
+          Account cosAccount1 = accountRepository.save(newAccount(2222L, cos));
+          em.clear();
      }
 
      // jwt token -> 인증필터 -> 시큐리티 세션생성
@@ -64,5 +79,30 @@ public class AccountControllerTest extends DummyObject {
 
           // then
           resultActions.andExpect(status().isCreated());
+     }
+
+     /**
+      * 테스트시에는 insert 한것들이 전부 PC에 올라감(영속화)
+      * 영속화 된것들을 초기화 해주는 것이 개발 모드와 동일한 환경으로 테스트를 할 수 있께 해준다.
+      * 최초에 select는 쿼리 발생하지만, PC에 있으면 캐싱해서 가져온다.
+      * lazyloading은 쿼리도 발생안함 - PC에 있다면
+      * lazyloading할 떄 PC에 없다면 쿼리가 발생
+      */
+     @WithUserDetails(value = "ssar", setupBefore = TestExecutionEvent.TEST_EXECUTION) // ssar 로그인
+     @Test
+     public void deleteAccount_test() throws Exception {
+          // given
+          Long number = 1111L;
+
+          // when
+          ResultActions resultActions = mvc
+                    .perform(delete("/api/s/account/" + number));
+          String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+          System.out.println("테스트 : " + responseBody);
+
+          // then
+          // junit test에서 delete 쿼리는 DB관련(DML)으로 가장 마지막에 실행되면 발동안됨.
+          assertThrows(CustomApiException.class, () -> accountRepository.findByNumber(number).orElseThrow(
+                    () -> new CustomApiException("계좌를 찾을 수 없습니다.")));
      }
 }

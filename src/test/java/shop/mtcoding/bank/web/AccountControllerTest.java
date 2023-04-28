@@ -20,7 +20,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -30,6 +29,7 @@ import shop.mtcoding.bank.domain.account.AccountRepository;
 import shop.mtcoding.bank.domain.user.User;
 import shop.mtcoding.bank.domain.user.UserRepository;
 import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountSaveReqeustDto;
+import shop.mtcoding.bank.dto.user.UserRequestDto.AccountDepositRequestDto;
 import shop.mtcoding.bank.handler.ex.CustomApiException;
 
 @Sql("classpath:db/teardown.sql")
@@ -105,5 +105,27 @@ public class AccountControllerTest extends DummyObject {
           // junit test에서 delete 쿼리는 DB관련(DML)으로 가장 마지막에 실행되면 발동안됨.
           assertThrows(CustomApiException.class, () -> accountRepository.findByNumber(number).orElseThrow(
                     () -> new CustomApiException("계좌를 찾을 수 없습니다.")));
+     }
+
+     @Test
+     public void depositAccount_test() throws Exception {
+          // given
+          AccountDepositRequestDto accountDepositRequestDto = new AccountDepositRequestDto();
+          accountDepositRequestDto.setNumber(1111L);
+          accountDepositRequestDto.setAmount(100L);
+          accountDepositRequestDto.setGubun("DEPOSIT");
+          accountDepositRequestDto.setTel("01088887777");
+
+          String requestBody = om.writeValueAsString(accountDepositRequestDto);
+          System.out.println("테스트 : " + requestBody);
+
+          // when
+          ResultActions resultActions = mvc
+                    .perform(post("/api/account/deposit").content(requestBody).contentType(MediaType.APPLICATION_JSON));
+          String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+          System.out.println("테스트 : " + responseBody);
+
+          // then
+          resultActions.andExpect(status().isCreated());
      }
 }

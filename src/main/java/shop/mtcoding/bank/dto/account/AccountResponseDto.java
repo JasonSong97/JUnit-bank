@@ -15,6 +15,46 @@ import shop.mtcoding.bank.util.CustomDateUtil;
 
 public class AccountResponseDto {
 
+     // DTO가 똑같아도 재사요하지 않기 (나중에 만약에 출금할때 먼가 조금 DTO 달라져야하면 DTO를 공유하면 수정잘못하면 망함 ->
+     // 독립적으로 만들자.)
+     @Getter
+     @Setter
+     public static class AccountWithdrawResponseDto { // 입금
+          private Long id; // 계좌ID
+          private Long number; // 계좌번호
+          private Long balance; // 잔액
+          private TransactionDto transaction; // 로그
+
+          public AccountWithdrawResponseDto(Account account, Transaction transaction) {
+               this.id = account.getId();
+               this.number = account.getNumber();
+               this.balance = account.getBalance();
+               this.transaction = new TransactionDto(transaction);
+          }
+
+          @Getter
+          @Setter
+          public class TransactionDto {
+               private Long id;
+               private String gubun;
+               private String sender;
+               private String reciver;
+               private Long amount;
+               private String tel;
+               private String createdAt;
+
+               public TransactionDto(Transaction transaction) {
+                    this.id = transaction.getId();
+                    this.gubun = transaction.getGubun().getValue();
+                    this.sender = transaction.getSender();
+                    this.reciver = transaction.getReceiver();
+                    this.amount = transaction.getAmount();
+                    this.createdAt = CustomDateUtil.toStringFormat(transaction.getCreatedAt());
+               }
+
+          }
+     }
+
      @Getter
      @Setter
      public static class AccountDepositResponseDto { // 입금

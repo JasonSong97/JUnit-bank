@@ -257,23 +257,37 @@ public class UserServiceTest extends DummyObject {
 - s: 인증이 필요한 것들
 
 ### 구성
+![image](https://user-images.githubusercontent.com/107292103/235311813-a4d6118f-46aa-4c52-a595-57357d6acf4d.png)
 
 ### 회원가입
+![image](https://user-images.githubusercontent.com/107292103/235311823-c504c2fe-a1f8-4bc0-acf4-5fbaef059809.png)
 
-### 로그인(토큰)
+### 로그인
+![image](https://user-images.githubusercontent.com/107292103/235311835-1ac6df19-e2c3-4a9e-9ba0-bd1f69ffa049.png)
 
-### 계좌등록
+### 계좌등록 (토큰)
+![image](https://user-images.githubusercontent.com/107292103/235311859-94b929e0-56d5-4c12-9eeb-a73d47a85fcb.png)
 
-### 계좌목록보기 유저별 성공
+### 계좌목록보기 유저별 성공 (토큰)
+![image](https://user-images.githubusercontent.com/107292103/235311867-395b8f75-325c-4c75-a81a-4df947912404.png)
 
-### 계좌삭제
+### 계좌삭제 (토큰)
+![image](https://user-images.githubusercontent.com/107292103/235311872-094c4247-be72-4ac5-b465-57c9af245bec.png)
 
-### 계좌 입금
+### 계좌 입금 (토큰)
+![image](https://user-images.githubusercontent.com/107292103/235311877-b66ceea5-b656-49d5-8ba4-4fe0a3677172.png)
 
-### 계좌 출금
+### 계좌 출금 (토큰)
+![image](https://user-images.githubusercontent.com/107292103/235311885-f5569b27-a9e2-4ffb-ae55-8ee7fa7fe37a.png)
 
-### 계좌 이체
+### 계좌 이체 (토큰)
+![image](https://user-images.githubusercontent.com/107292103/235311890-fb4a2267-89e3-4c04-8789-59926e713d29.png)
 
-### 계좌상세보기
+### 계좌상세보기 (토큰)
+![image](https://user-images.githubusercontent.com/107292103/235311916-d3dfac4a-84ac-47ef-b580-9c7442ef8043.png)
+![image](https://user-images.githubusercontent.com/107292103/235311963-dee2ce5e-8198-46b9-8257-c0e6c82ca768.png)
 
-### 입출금목록보기
+### 입출금목록보기 (토큰)
+![image](https://user-images.githubusercontent.com/107292103/235311972-a205e33d-e6e8-4692-80a7-4f3d326f5900.png)
+![image](https://user-images.githubusercontent.com/107292103/235311977-3869b8cf-a673-46e5-be38-9b68e6237d01.png)
+

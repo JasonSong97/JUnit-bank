@@ -18,13 +18,13 @@ import lombok.RequiredArgsConstructor;
 import shop.mtcoding.bank.config.auth.LoginUser;
 import shop.mtcoding.bank.dto.ResponseDto;
 import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountSaveReqeustDto;
+import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountWithdrawRequestDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountDepositResponseDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountListResponseDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountSaveResponseDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountWithdrawResponseDto;
 import shop.mtcoding.bank.dto.user.UserRequestDto.AccountDepositRequestDto;
 import shop.mtcoding.bank.service.AccountService;
-import shop.mtcoding.bank.service.AccountService.AccountWithdrawRequestDto;
 
 @RequiredArgsConstructor
 @RequestMapping("/api")

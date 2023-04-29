@@ -191,11 +191,13 @@ public class AccountServiceTest extends DummyObject {
           assertThat(ssarAccount.getBalance()).isEqualTo(900L);
      }
 
+     // 완벽한 테스트는 존재 X
+     // 꼼꼼하게 값을 테스트하기
      // 계좌 이체_테스트 (서비스)
      @Test
      public void 계좌이체_test() throws Exception {
           // given
-          Long userId = 1L;
+          Long userId = 1000L;
           AccountTransferRequestDto accountTransferRequestDto = new AccountTransferRequestDto();
           accountTransferRequestDto.setWithdrawNumber(1111L);
           accountTransferRequestDto.setDepositNumber(2222L);
@@ -203,8 +205,8 @@ public class AccountServiceTest extends DummyObject {
           accountTransferRequestDto.setAmount(100L);
           accountTransferRequestDto.setGubun("TRANSFER");
 
-          User ssar = newMockUser(1L, "ssar", "쌀");
-          User cos = newMockUser(2L, "cos", "코스");
+          User ssar = newMockUser(1000L, "ssar", "쌀");
+          User cos = newMockUser(2000L, "cos", "코스");
           Account withdrawAccount = newMockAccount(1L, 1111L, 1000L, ssar);
           Account depositAccount = newMockAccount(2L, 2222L, 1000L, cos);
 

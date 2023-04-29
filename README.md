@@ -155,5 +155,8 @@ SET REFERENTIAL_INTEGRITY TRUE; -- 활성화
 - DB 관련된 것을 조회했을 때, 그 값을 통해서 어떤 비지니스 로직이 흘러가는 것이 있으면 -> stub으로 정의해서 테스트를 해보면 된다.
 
 ### left outer join vs inner join
+- Driving table, Driven table
 - left outer join: null 포함 모든 것들을 가져오는 것
-- ![image](https://user-images.githubusercontent.com/107292103/235301316-685f3ee6-eed8-42bd-9c14-cc0ee83c7517.png)
+- inner join: null 제외하고 가져옴 -> 제외시킬 떄, 해당 row를 아예 가져오지 않음
+
+![image](https://user-images.githubusercontent.com/107292103/235301316-685f3ee6-eed8-42bd-9c14-cc0ee83c7517.png)

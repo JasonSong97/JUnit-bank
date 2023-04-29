@@ -7,8 +7,6 @@ import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
-import javax.swing.text.html.Option;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -165,6 +163,30 @@ public class AccountServiceTest extends DummyObject {
 
           // then
           assertThat(account.getBalance()).isEqualTo(1100L);
+     }
+
+     @Test
+     public void 계좌출금_test() throws Exception {
+          // given
+          Long amount = 100L;
+          Long password = 1234L;
+          Long userId = 1L;
+
+          User ssar = newMockUser(1L, "ssar", "쌀");
+          Account ssarAccount = newMockAccount(1L, 1111L, 1000L, ssar);
+
+          // when
+          // 0원 체크
+          if (amount <= 0L) {
+               throw new CustomApiException("0원 이하의 금액을 입금할 수 없습니다.");
+          }
+          ssarAccount.checkOnwer(userId);
+          ssarAccount.checkSamePassword(password);
+          // ssarAccount.checkBalance(amount);
+          ssarAccount.withdraw(amount);
+
+          // then
+          assertThat(ssarAccount.getBalance()).isEqualTo(900L);
      }
 }
 

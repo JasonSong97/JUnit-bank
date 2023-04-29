@@ -18,10 +18,12 @@ import lombok.RequiredArgsConstructor;
 import shop.mtcoding.bank.config.auth.LoginUser;
 import shop.mtcoding.bank.dto.ResponseDto;
 import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountSaveReqeustDto;
+import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountTransferRequestDto;
 import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountWithdrawRequestDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountDepositResponseDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountListResponseDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountSaveResponseDto;
+import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountTransferResponseDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountWithdrawResponseDto;
 import shop.mtcoding.bank.dto.user.UserRequestDto.AccountDepositRequestDto;
 import shop.mtcoding.bank.service.AccountService;
@@ -68,5 +70,14 @@ public class AccountController {
           AccountWithdrawResponseDto accountWithdrawResponseDto = accountService.계좌출금(accountWithdrawRequestDto,
                     loginUser.getUser().getId());
           return new ResponseEntity<>(new ResponseDto<>(1, "계좌 출금 성공", accountWithdrawResponseDto), HttpStatus.CREATED);
+     }
+
+     @PostMapping("/s/account/transfer")
+     public ResponseEntity<?> transferAccount(@RequestBody @Valid AccountTransferRequestDto accountTransferRequestDto,
+               BindingResult bindingResult,
+               @AuthenticationPrincipal LoginUser loginUser) {
+          AccountTransferResponseDto accountTransferResponseDto = accountService.계좌이체(accountTransferRequestDto,
+                    loginUser.getUser().getId());
+          return new ResponseEntity<>(new ResponseDto<>(1, "계좌 이체 성공", accountTransferResponseDto), HttpStatus.CREATED);
      }
 }

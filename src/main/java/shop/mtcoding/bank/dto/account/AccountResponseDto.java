@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.TreeNode;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -49,6 +50,7 @@ public class AccountResponseDto {
                     this.sender = transaction.getSender();
                     this.reciver = transaction.getReceiver();
                     this.amount = transaction.getAmount();
+                    this.depositAccountBalance = transaction.getDepositAccountBalance();
                     this.createdAt = CustomDateUtil.toStringFormat(transaction.getCreatedAt());
                }
 

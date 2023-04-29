@@ -3,7 +3,6 @@ package shop.mtcoding.bank.domain.transaction;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.swing.text.html.parser.Entity;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,6 +48,26 @@ public class TransactionRepositoryImplTest extends DummyObject {
                System.out.println("테스트 : " + transaction.getGubun());
                System.out.println("테스트 : =======================================");
           });
+     }
+
+     @Test
+     public void findTransactionList_all_test() throws Exception {
+          // given
+          Long accountId = 1L;
+
+          // when
+          List<Transaction> transactionListPS = transactionRepository.findTransactionList(accountId, "ALL", 0);
+          transactionListPS.forEach((t) -> {
+               System.out.println("테스트 : id : " + t.getId());
+               System.out.println("테스트 : amount : " + t.getAmount());
+               System.out.println("테스트 : sender : " + t.getSender());
+               System.out.println("테스트 : receiver : " + t.getReceiver());
+               System.out.println("테스트 : withdrawAccout잔액 : " + t.getWithdrawAccountBalance());
+               System.out.println("테스트 : depositAccount잔액 : " + t.getDepositAccountBalance());
+               System.out.println("테스트 : =======================================");
+          });
+          // then
+
      }
 
      @Test

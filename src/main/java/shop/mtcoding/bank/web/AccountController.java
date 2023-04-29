@@ -49,7 +49,7 @@ public class AccountController {
      @GetMapping("/s/account/login-user")
      public ResponseEntity<?> findUserAccount(@AuthenticationPrincipal LoginUser loginUser) {
           AccountListResponseDto accountListResponseDto = accountService.계좌목록보기_유저별(loginUser.getUser().getId());
-          return new ResponseEntity<>(new ResponseDto<>(1, "계획목록보기_유저별 성공", accountListResponseDto), HttpStatus.OK);
+          return new ResponseEntity<>(new ResponseDto<>(1, "계좌목록보기_유저별 성공", accountListResponseDto), HttpStatus.OK);
      }
 
      @DeleteMapping("/s/account/{number}")

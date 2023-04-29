@@ -43,6 +43,8 @@ public class Account {
      @ManyToOne(fetch = FetchType.LAZY) // account.getUser().아무필드호출() == Lazy 발동
      private User user; // 특별한 설정 하지않으면, user_id
 
+     // 양방향 매핑 -> 쿼리를 보면 이상하게 나온다.
+
      @CreatedDate // insert
      @Column(nullable = false)
      private LocalDateTime createdAt;

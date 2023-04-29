@@ -93,7 +93,7 @@ public class RegexTest {
      @Test
      public void account_tel_test2() throws Exception {
           String gubun = "01033339999";
-          boolean result = Pattern.matches("^[0-9]{11", gubun);
+          boolean result = Pattern.matches("^[0-9]{11}", gubun);
           System.out.println("테스트 : " + result);
      }
 }

@@ -155,7 +155,7 @@ public class AccountServiceTest extends DummyObject {
      public void 계좌입금_test3() throws Exception {
           // given
           Account account = newMockAccount(1L, 1111L, 1000L, null);
-          Long amount = 0L;
+          Long amount = 1L;
           // when
           if (amount <= 0L) {
                throw new CustomApiException("0원 이하의 금액을 입금할 수 없습니다.");

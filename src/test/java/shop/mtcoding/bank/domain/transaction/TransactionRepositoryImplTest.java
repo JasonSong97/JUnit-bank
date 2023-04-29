@@ -1,5 +1,7 @@
 package shop.mtcoding.bank.domain.transaction;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -36,6 +38,7 @@ public class TransactionRepositoryImplTest extends DummyObject {
      public void setUp() {
           autoincrementReset();
           dataSetting();
+          em.clear(); // 레포 테스트 필수
      }
 
      @Test
@@ -53,10 +56,10 @@ public class TransactionRepositoryImplTest extends DummyObject {
      @Test //
      public void findTransactionList_all_test() throws Exception {
           // given
-          Long accountId = 2L;
+          Long accountId = 1L;
 
           // when
-          List<Transaction> transactionListPS = transactionRepository.findTransactionList(accountId, "WITHDRAW", 0); // TRANSFER,
+          List<Transaction> transactionListPS = transactionRepository.findTransactionList(accountId, "ALL", 0); // TRANSFER,
           // WITHDRAW
           // ALL
           transactionListPS.forEach((t) -> {
@@ -66,10 +69,13 @@ public class TransactionRepositoryImplTest extends DummyObject {
                System.out.println("테스트 : receiver : " + t.getReceiver());
                System.out.println("테스트 : withdrawAccout잔액 : " + t.getWithdrawAccountBalance());
                System.out.println("테스트 : depositAccount잔액 : " + t.getDepositAccountBalance());
+               System.out.println("테스트 : 잔액 : " + t.getWithdrawAccount().getBalance());
+               // System.out.println("테스트 : fullname : " +
+               // t.getWithdrawAccount().getUser().getFullname());
                System.out.println("테스트 : =======================================");
           });
           // then
-
+          assertThat(transactionListPS.get(3).getDepositAccountBalance()).isEqualTo(800L);
      }
 
      @Test

@@ -31,6 +31,7 @@ import shop.mtcoding.bank.domain.user.UserRepository;
 import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountSaveReqeustDto;
 import shop.mtcoding.bank.dto.user.UserRequestDto.AccountDepositRequestDto;
 import shop.mtcoding.bank.handler.ex.CustomApiException;
+import shop.mtcoding.bank.service.AccountService.AccountWithdrawRequestDto;
 
 @Sql("classpath:db/teardown.sql")
 @ActiveProfiles("test")
@@ -127,5 +128,29 @@ public class AccountControllerTest extends DummyObject {
 
           // then
           resultActions.andExpect(status().isCreated());
+     }
+
+     @WithUserDetails(value = "ssar", setupBefore = TestExecutionEvent.TEST_EXECUTION)
+     @Test
+     public void withdrawAccount_test() throws Exception {
+          // given
+          AccountWithdrawRequestDto accountWithdrawRequestDto = new AccountWithdrawRequestDto();
+          accountWithdrawRequestDto.setNumber(1111L);
+          accountWithdrawRequestDto.setPassword(1234L);
+          accountWithdrawRequestDto.setAmount(100L);
+          accountWithdrawRequestDto.setGubun("WITHDRAW");
+
+          String requestBody = om.writeValueAsString(accountWithdrawRequestDto);
+          System.out.println("테스트 : " + requestBody);
+
+          // when
+          ResultActions resultActions = mvc
+                    .perform(post("/api/s/account/withdraw").content(requestBody)
+                              .contentType(MediaType.APPLICATION_JSON));
+          String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+          System.out.println("테스트 : " + responseBody);
+
+          // then
+
      }
 }

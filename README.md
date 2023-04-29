@@ -156,3 +156,4 @@ SET REFERENTIAL_INTEGRITY TRUE; -- 활성화
 
 ### left outer join vs inner join
 - left outer join: null 포함 모든 것들을 가져오는 것
+- ![image](https://user-images.githubusercontent.com/107292103/235301316-685f3ee6-eed8-42bd-9c14-cc0ee83c7517.png)

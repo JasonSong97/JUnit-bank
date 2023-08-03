@@ -41,6 +41,14 @@ public class SecurityConfig {
           http.formLogin().disable();
           // 브라우저가 팝업창을 이용해서 사용자 인증을 진행
           http.httpBasic().disable();
+
+          // Exception 가로채기(일관성을 위해서)
+          http.exceptionHandling().authenticationEntryPoint((request, response, authException) -> {
+               response.setContentType("application/json; charset=utf-8");
+               response.setStatus(403);
+               response.getWriter().println("error");
+          });
+
           http.authorizeRequests()
                     .antMatchers("/api/s/**").authenticated()
                     .antMatchers("/api/admin/**").hasRole("" + UserEnum.ADMIN) // ROLE_

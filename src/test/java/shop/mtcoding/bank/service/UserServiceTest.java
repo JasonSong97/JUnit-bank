@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -15,16 +14,16 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import shop.mtcoding.bank.config.dummy.DummyObject;
 import shop.mtcoding.bank.domain.user.User;
-import shop.mtcoding.bank.domain.user.UserEnum;
 import shop.mtcoding.bank.domain.user.UserRepository;
-import shop.mtcoding.bank.service.UserService.JoinRequestDto;
-import shop.mtcoding.bank.service.UserService.JoinResponseDto;
+import shop.mtcoding.bank.dto.user.UserRequestDto.JoinRequestDto;
+import shop.mtcoding.bank.dto.user.UserResponseDto.JoinResponseDto;
 
 @ExtendWith(MockitoExtension.class)
-public class UserServiceTest {
+public class UserServiceTest extends DummyObject {
 
-     @InjectMocks // 가짜환경에 넣는 것, @Autowired랑 다름
+     @InjectMocks // 가짜환경에 집어 넣는 것, @Autowired랑 다름
      private UserService userService;
      @Mock
      private UserRepository userRepository;
@@ -44,16 +43,7 @@ public class UserServiceTest {
           when(userRepository.findByUsername(any())).thenReturn(Optional.empty());
 
           // stub 2
-          User ssar = User.builder()
-                    .id(1L)
-                    .username("ssar")
-                    .password("1234")
-                    .email("ssar@nate.com")
-                    .fullname("쌀")
-                    .role(UserEnum.CUSTOMER)
-                    .createAt(LocalDateTime.now())
-                    .updateAt(LocalDateTime.now())
-                    .build();
+          User ssar = newMockUser(1L, "ssar", "쌀");
           when(userRepository.save(any())).thenReturn(ssar);
 
           // when

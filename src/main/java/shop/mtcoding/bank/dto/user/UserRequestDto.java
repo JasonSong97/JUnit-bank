@@ -40,4 +40,12 @@ public class UserRequestDto {
                          .build();
           }
      }
+
+     @Getter
+     @Setter
+     public static class LoginRequestDto { // 제어하지 못하는 이유 : 컨트롤러 전에 작동하기 때문에
+
+          private String username;
+          private String password;
+     }
 }

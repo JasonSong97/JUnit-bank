@@ -4,7 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -12,6 +14,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import shop.mtcoding.bank.config.jwt.JwtAuthenticationFilter;
 import shop.mtcoding.bank.domain.user.UserEnum;
 import shop.mtcoding.bank.util.CustomResponseUtil;
 
@@ -26,7 +29,18 @@ public class SecurityConfig {
           return new BCryptPasswordEncoder();
      }
 
-     // JWT 등록이 필요함!!
+     // JWT 등록
+     public class CustomSecurityFilterManager
+               extends AbstractHttpConfigurer<CustomSecurityFilterManager, HttpSecurity> {
+
+          @Override
+          public void configure(HttpSecurity builder) throws Exception {
+               AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);
+               // 강제 세션 로그인을 위해 authenticationManager 필요
+               builder.addFilter(new JwtAuthenticationFilter(authenticationManager));
+               super.configure(builder);
+          }
+     }
 
      // JWT 서버 -> 세션 사용 X(무상태 서버)
      @Bean
@@ -42,6 +56,8 @@ public class SecurityConfig {
           http.formLogin().disable();
           // 브라우저가 팝업창을 이용해서 사용자 인증을 진행
           http.httpBasic().disable();
+          // 필터 적용
+          http.apply(new CustomSecurityFilterManager());
 
           // Exception 가로채기(일관성을 위해서)
           http.exceptionHandling().authenticationEntryPoint((request, response, authException) -> {

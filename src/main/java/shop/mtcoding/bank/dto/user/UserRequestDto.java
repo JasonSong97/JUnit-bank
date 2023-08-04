@@ -1,5 +1,7 @@
 package shop.mtcoding.bank.dto.user;
 
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import lombok.Getter;
@@ -12,10 +14,14 @@ public class UserRequestDto {
      @Getter
      @Setter
      public static class JoinRequestDto {
-          // 유효성 검사
+
+          @NotEmpty // null, empty 불가능
           private String username;
+          @NotEmpty
           private String password;
+          @NotEmpty
           private String email;
+          @NotEmpty
           private String fullname;
 
           public User toEntity(BCryptPasswordEncoder passwordEncoder) {

@@ -26,6 +26,7 @@ public class UserService {
      @Transactional
      public JoinResponseDto 회원가입(JoinRequestDto joinRequestDto) {
           // 1. 동일 유저네임 검사
+          System.out.println("테스트 : ");
           Optional<User> userOP = userRepository.findByUsername(joinRequestDto.getUsername());
           if (userOP.isPresent()) {
                throw new CustomApiException("동일한 유저네임이 존재합니다. ");

@@ -36,7 +36,7 @@ public class SecurityConfig {
           @Override
           public void configure(HttpSecurity builder) throws Exception {
                AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);
-               // 강제 세션 로그인을 위해 authenticationManager 필요
+               // 강제 세션 로그인을 위해 JwtAuthenticationFilter에 authenticationManager 필요
                builder.addFilter(new JwtAuthenticationFilter(authenticationManager));
                super.configure(builder);
           }

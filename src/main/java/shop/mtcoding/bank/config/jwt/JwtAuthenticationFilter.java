@@ -44,14 +44,20 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                          loginRequestDto.getUsername(), loginRequestDto.getPassword());
                Authentication authentication = authenticationManager.authenticate(authenticationToken);
-               return authentication;
+               return authentication; // successfulAuthentication 호출
           } catch (Exception e) {
-               // SecurityConfig, authenticationEntryPoint에서 걸림
+               // unsuccessfulAuthentication 호출
                throw new InternalAuthenticationServiceException(e.getMessage());
           }
      }
 
-     @Override // 동작 시점 : attemptAuthentication, return authentication 작동 시
+     @Override
+     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
+               AuthenticationException failed) throws IOException, ServletException {
+          CustomResponseUtil.unAuthentication(response, "로그인 실패");
+     }
+
+     @Override
      protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
                FilterChain chain, Authentication authResult) throws IOException, ServletException {
           log.debug("디버그 : successfulAuthentication 호출됨"); // 로그인 O, 세션이 만들어진 것

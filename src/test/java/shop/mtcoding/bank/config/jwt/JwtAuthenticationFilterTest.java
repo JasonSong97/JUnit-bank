@@ -16,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -23,6 +24,7 @@ import shop.mtcoding.bank.config.dummy.DummyObject;
 import shop.mtcoding.bank.domain.user.UserRepository;
 import shop.mtcoding.bank.dto.user.UserRequestDto.LoginRequestDto;
 
+@Transactional // 테스트 롤백
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
@@ -67,10 +69,21 @@ public class JwtAuthenticationFilterTest extends DummyObject {
      @Test
      public void unsuccessfulAuthentication_test() throws Exception {
           // given
+          LoginRequestDto loginRequestDto = new LoginRequestDto();
+          loginRequestDto.setUsername("ssar");
+          loginRequestDto.setPassword("12345");
+          String reqeustBody = om.writeValueAsString(loginRequestDto);
+          System.out.println("테스트 : " + reqeustBody);
 
           // when
+          ResultActions resultActions = mvc
+                    .perform(post("/api/login").content(reqeustBody).contentType(MediaType.APPLICATION_JSON));
+          String reasponseBody = resultActions.andReturn().getResponse().getContentAsString();
+          String jwtToken = resultActions.andReturn().getResponse().getHeader(JwtValueObject.HEADER);
+          System.out.println("테스트 : " + reasponseBody);
+          System.out.println("테스트 : " + jwtToken);
 
           // then
-
+          resultActions.andExpect(status().isUnauthorized());
      }
 }

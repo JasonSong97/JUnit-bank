@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -24,14 +25,16 @@ import shop.mtcoding.bank.domain.user.User;
 @NoArgsConstructor
 @Getter
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "account_tb")
+@Table(name = "account_tb", indexes = {
+          @Index(name = "idx_account_number", columnList = "number")
+})
 @Entity
 public class Account {
 
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;
-     @Column(unique = true, nullable = false, length = 20)
+     @Column(unique = true, nullable = false, length = 4)
      private Long number; // 계좌변호
      @Column(nullable = false, length = 4)
      private Long password; // 계좌비번

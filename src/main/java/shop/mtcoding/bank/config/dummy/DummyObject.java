@@ -46,7 +46,7 @@ public class DummyObject {
                     .build();
      }
 
-     protected Account newMockAccout(Long id, Long number, Long balance, User user) {
+     protected Account newMockAccount(Long id, Long number, Long balance, User user) {
           return Account.builder()
                     .id(id)
                     .number(number)

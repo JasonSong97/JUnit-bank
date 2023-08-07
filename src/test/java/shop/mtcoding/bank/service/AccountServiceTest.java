@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -21,6 +23,7 @@ import shop.mtcoding.bank.domain.account.AccountRepository;
 import shop.mtcoding.bank.domain.user.User;
 import shop.mtcoding.bank.domain.user.UserRepository;
 import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountSaveRequestDto;
+import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountListResponseDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountSaveResponseDto;
 
 @ExtendWith(MockitoExtension.class)
@@ -52,7 +55,7 @@ public class AccountServiceTest extends DummyObject {
           when(accountRepository.findByNumber(any())).thenReturn(Optional.empty());
 
           // stub 3
-          Account ssarAccount = newMockAccout(1L, 1111L, 1000L, ssar);
+          Account ssarAccount = newMockAccount(1L, 1111L, 1000L, ssar);
           when(accountRepository.save(any())).thenReturn(ssarAccount);
 
           // when
@@ -62,5 +65,28 @@ public class AccountServiceTest extends DummyObject {
 
           // then
           assertThat(accountSaveRequestDto.getNumber()).isEqualTo(1111L);
+     }
+
+     @Test
+     public void 계좌목록보기_유저별_test() throws Exception {
+          // given
+          Long userId = 1L;
+
+          // stub 1
+          User ssar = newMockUser(userId, "ssar", "쌀");
+          when(userRepository.findById(userId)).thenReturn(Optional.of(ssar));
+
+          // stub 2
+          Account ssarAccount1 = newMockAccount(1L, 1111L, 1000L, ssar);
+          Account ssarAccount2 = newMockAccount(2L, 2222L, 1000L, ssar);
+          List<Account> accountList = Arrays.asList(ssarAccount1, ssarAccount2);
+          when(accountRepository.findByUser_id(any())).thenReturn(accountList);
+
+          // when
+          AccountListResponseDto accountListResponseDto = accountService.계좌목록보기_유저별(userId);
+
+          // then
+          assertThat(accountListResponseDto.getFullname()).isEqualTo("쌀");
+          assertThat(accountListResponseDto.getAccounts().size()).isEqualTo(2);
      }
 }

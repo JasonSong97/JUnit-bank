@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 import shop.mtcoding.bank.config.auth.LoginUser;
 import shop.mtcoding.bank.dto.ResponseDto;
+import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountDepositRequestDto;
 import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountSaveRequestDto;
+import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountDepositResponseDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountListResponseDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountSaveResponseDto;
 import shop.mtcoding.bank.service.AccountService;
-import shop.mtcoding.bank.service.AccountService.AccountDepositRequestDto;
-import shop.mtcoding.bank.service.AccountService.AccountDepositResponseDto;
 
 @RequiredArgsConstructor
 @RequestMapping("/api")

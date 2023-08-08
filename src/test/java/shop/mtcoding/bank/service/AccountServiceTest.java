@@ -21,9 +21,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import shop.mtcoding.bank.config.dummy.DummyObject;
 import shop.mtcoding.bank.domain.account.Account;
 import shop.mtcoding.bank.domain.account.AccountRepository;
+import shop.mtcoding.bank.domain.transaction.Transaction;
+import shop.mtcoding.bank.domain.transaction.TransactionRepository;
 import shop.mtcoding.bank.domain.user.User;
 import shop.mtcoding.bank.domain.user.UserRepository;
+import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountDepositRequestDto;
 import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountSaveRequestDto;
+import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountDepositResponseDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountListResponseDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountSaveResponseDto;
 import shop.mtcoding.bank.handler.ex.CustomApiException;
@@ -37,6 +41,8 @@ public class AccountServiceTest extends DummyObject {
      private UserRepository userRepository;
      @Mock
      private AccountRepository accountRepository;
+     @Mock
+     private TransactionRepository transactionRepository;
      @Spy
      private ObjectMapper om;
 
@@ -105,5 +111,36 @@ public class AccountServiceTest extends DummyObject {
 
           // when, then
           assertThrows(CustomApiException.class, () -> accountService.계좌삭제(number, userId));
+     }
+
+     @Test
+     public void 계좌입금_test() throws Exception {
+          // given
+          AccountDepositRequestDto accountDepositRequestDto = new AccountDepositRequestDto();
+          accountDepositRequestDto.setNumber(1111L);
+          accountDepositRequestDto.setAmount(100L);
+          accountDepositRequestDto.setGubun("DEPOSIT");
+          accountDepositRequestDto.setTel("01088887777");
+
+          // stub 1
+          User ssar = newMockUser(1L, "ssar", "쌀");
+          Account ssarAccount1 = newMockAccount(1L, 1111L, 1000L, ssar);
+          when(accountRepository.findByNumber(any())).thenReturn(Optional.of(ssarAccount1));
+
+          // stub 2
+          Account ssarAccount2 = newMockAccount(1L, 1111L, 1000L, ssar);
+          Transaction transaction = newMockDepositTransaction(1L, ssarAccount2);
+          when(transactionRepository.save(any())).thenReturn(transaction);
+
+          // when
+          AccountDepositResponseDto accountDepositResponseDto = accountService.계좌입금(accountDepositRequestDto);
+          System.out.println(
+                    "테스트 : 트랜젝션 입금계좌 잔액 : " + accountDepositResponseDto.getTransaction().getDepositAccountBalance());
+          System.out.println("테스트 : 계좌쪽 잔액 : " + ssarAccount1.getBalance());
+          System.out.println("테스트 : 계좌쪽 잔액 : " + ssarAccount2.getBalance());
+
+          // then
+          assertThat(ssarAccount1.getBalance()).isEqualTo(1100L);
+          assertThat(accountDepositResponseDto.getTransaction().getDepositAccountBalance()).isEqualTo(1100L);
      }
 }

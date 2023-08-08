@@ -1,6 +1,7 @@
 package shop.mtcoding.bank.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -25,6 +26,7 @@ import shop.mtcoding.bank.domain.user.UserRepository;
 import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountSaveRequestDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountListResponseDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountSaveResponseDto;
+import shop.mtcoding.bank.handler.ex.CustomApiException;
 
 @ExtendWith(MockitoExtension.class)
 public class AccountServiceTest extends DummyObject {
@@ -88,5 +90,20 @@ public class AccountServiceTest extends DummyObject {
           // then
           assertThat(accountListResponseDto.getFullname()).isEqualTo("쌀");
           assertThat(accountListResponseDto.getAccounts().size()).isEqualTo(2);
+     }
+
+     @Test
+     public void 계좌삭제_test() throws Exception {
+          // given
+          Long number = 1111L;
+          Long userId = 2L;
+
+          // stub 1
+          User ssar = newMockUser(1L, "ssar", "쌀");
+          Account ssarAccount = newMockAccount(1L, 1111L, 1000L, ssar);
+          when(accountRepository.findByNumber(any())).thenReturn(Optional.of(ssarAccount));
+
+          // when, then
+          assertThrows(CustomApiException.class, () -> accountService.계좌삭제(number, userId));
      }
 }

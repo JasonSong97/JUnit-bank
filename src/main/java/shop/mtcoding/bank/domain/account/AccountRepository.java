@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
      // jpa query method, selct * from account where number = :number
+     // @Query("SELECT ac FROM Account ac JOIN FETCH ac.user u WHERE ac.number =
+     // :number")
      Optional<Account> findByNumber(Long number);
 
      // jpa query method, selct * from account where user_id = :id

@@ -37,7 +37,7 @@ public class Transaction {
      @ManyToOne(fetch = FetchType.LAZY)
      private Account withdrawAccount;
      @ManyToOne(fetch = FetchType.LAZY)
-     private Account dipositAccount;
+     private Account depositAccount;
 
      @Column(nullable = false)
      private Long amount;
@@ -58,12 +58,12 @@ public class Transaction {
      private LocalDateTime updateAt;
 
      @Builder
-     public Transaction(Long id, Account withdrawAccount, Account dipositAccount, Long amount,
+     public Transaction(Long id, Account withdrawAccount, Account depositAccount, Long amount,
                Long withdrawAccountBalance, Long depositAccountBalance, TransactionEnum gubun, String sender,
                String receiver, String tel, LocalDateTime createAt, LocalDateTime updateAt) {
           this.id = id;
           this.withdrawAccount = withdrawAccount;
-          this.dipositAccount = dipositAccount;
+          this.depositAccount = depositAccount;
           this.amount = amount;
           this.withdrawAccountBalance = withdrawAccountBalance;
           this.depositAccountBalance = depositAccountBalance;

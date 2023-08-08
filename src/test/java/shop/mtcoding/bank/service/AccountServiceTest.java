@@ -143,4 +143,48 @@ public class AccountServiceTest extends DummyObject {
           assertThat(ssarAccount1.getBalance()).isEqualTo(1100L);
           assertThat(accountDepositResponseDto.getTransaction().getDepositAccountBalance()).isEqualTo(1100L);
      }
+
+     @Test
+     public void 계좌입금_test2() throws Exception {
+          // given
+          AccountDepositRequestDto accountDepositRequestDto = new AccountDepositRequestDto();
+          accountDepositRequestDto.setNumber(1111L);
+          accountDepositRequestDto.setAmount(100L);
+          accountDepositRequestDto.setGubun("DEPOSIT");
+          accountDepositRequestDto.setTel("01088887777");
+
+          // stub 1
+          User ssar = newMockUser(1L, "ssar", "쌀");
+          Account ssarAccount1 = newMockAccount(1L, 1111L, 1000L, ssar);
+          when(accountRepository.findByNumber(any())).thenReturn(Optional.of(ssarAccount1));
+
+          // stub 2
+          User ssar2 = newMockUser(1L, "ssar", "쌀");
+          Account ssarAccount2 = newMockAccount(1L, 1111L, 1000L, ssar2);
+          Transaction transaction = newMockDepositTransaction(1L, ssarAccount2);
+          when(transactionRepository.save(any())).thenReturn(transaction);
+
+          // when
+          AccountDepositResponseDto accountDepositResponseDto = accountService.계좌입금(accountDepositRequestDto);
+          String resposneBody = om.writeValueAsString(accountDepositResponseDto);
+          System.out.println("테스트 : " + resposneBody);
+
+          // then
+          assertThat(ssarAccount1.getBalance()).isEqualTo(1100L);
+     }
+
+     @Test
+     public void 계좌입금_test3() throws Exception {
+          // given
+          Account account = newMockAccount(1L, 1111L, 1000L, null);
+          Long amount = 0L;
+          // when
+          if (amount <= 0L) {
+               throw new CustomApiException("0원 이하의 금액을 입금할 수 없습니다.");
+          }
+          account.deposit(100L);
+
+          // then
+          assertThat(account.getBalance()).isEqualTo(1100L);
+     }
 }

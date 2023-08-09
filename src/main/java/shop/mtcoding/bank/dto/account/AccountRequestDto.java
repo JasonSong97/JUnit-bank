@@ -49,4 +49,21 @@ public class AccountRequestDto {
           @Pattern(regexp = "^[0-9]{11}")
           private String tel;
      }
+
+     @Getter
+     @Setter
+     public static class AccountWithdrawRequestDto {
+
+          @NotNull
+          @Digits(integer = 4, fraction = 4)
+          private Long number;
+          @NotNull
+          @Digits(integer = 4, fraction = 4)
+          private Long password;
+          @NotNull
+          private Long amount;
+          @NotEmpty
+          @Pattern(regexp = "WITHDRAW")
+          private String gubun;
+     }
 }

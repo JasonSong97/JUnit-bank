@@ -76,9 +76,8 @@ public class AccountController {
      public ResponseEntity<?> transferAccount(@RequestBody @Valid AccountTransferRequestDto accountTransferRequestDto,
                BindingResult bindingResult,
                @AuthenticationPrincipal LoginUser loginUser) {
-          AccountTransferResponseDto accountTrnasferResponseDto = accountService.계좌이체(accountTransferRequestDto,
+          AccountTransferResponseDto accountTransferResponseDto = accountService.계좌이체(accountTransferRequestDto,
                     loginUser.getUser().getId());
-          return new ResponseEntity<>(new ResponseDto<>(1, "계좌이체 성공", accountTrnasferResponseDto),
-                    HttpStatus.CREATED);
+          return new ResponseEntity<>(new ResponseDto<>(1, "계좌 이체 완료", accountTransferResponseDto), HttpStatus.CREATED);
      }
 }

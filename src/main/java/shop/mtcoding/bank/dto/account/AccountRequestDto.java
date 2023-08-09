@@ -67,8 +67,8 @@ public class AccountRequestDto {
           private String gubun;
      }
 
-     @Getter
      @Setter
+     @Getter
      public static class AccountTransferRequestDto {
 
           @NotNull
@@ -83,7 +83,7 @@ public class AccountRequestDto {
           @NotNull
           private Long amount;
           @NotEmpty
-          @Pattern(regexp = "TRASNFER")
+          @Pattern(regexp = "TRANSFER")
           private String gubun;
      }
 }

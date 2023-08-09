@@ -135,8 +135,8 @@ public class AccountResponseDto {
           }
      }
 
-     @Getter
      @Setter
+     @Getter
      public static class AccountTransferResponseDto {
 
           private Long id; // 계좌 ID
@@ -151,24 +151,25 @@ public class AccountResponseDto {
                this.transaction = new TransactionDto(transaction);
           }
 
-          @Getter
           @Setter
+          @Getter
           public class TransactionDto {
                private Long id;
                private String gubun;
                private String sender;
-               private String receiver;
+               private String reciver;
                private Long amount;
                @JsonIgnore
-               private Long depositAccountBalalnce; // 입금계좌 잔액
+               private Long depositAccountBalance;
                private String createdAt;
 
                public TransactionDto(Transaction transaction) {
                     this.id = transaction.getId();
                     this.gubun = transaction.getGubun().getValue();
                     this.sender = transaction.getSender();
-                    this.receiver = transaction.getReceiver();
+                    this.reciver = transaction.getReceiver();
                     this.amount = transaction.getAmount();
+                    this.depositAccountBalance = transaction.getDepositAccountBalance();
                     this.createdAt = CustomDateUtil.toStringFormat(transaction.getCreateAt());
                }
           }

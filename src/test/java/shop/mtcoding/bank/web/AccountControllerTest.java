@@ -31,6 +31,7 @@ import shop.mtcoding.bank.domain.user.User;
 import shop.mtcoding.bank.domain.user.UserRepository;
 import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountDepositRequestDto;
 import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountSaveRequestDto;
+import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountTransferRequestDto;
 import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountWithdrawRequestDto;
 import shop.mtcoding.bank.handler.ex.CustomApiException;
 
@@ -150,6 +151,31 @@ public class AccountControllerTest extends DummyObject {
           // when
           ResultActions resultActions = mvc
                     .perform(post("/api/s/account/withdraw").content(requestBody)
+                              .contentType(MediaType.APPLICATION_JSON));
+          String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+          System.out.println("테스트 : " + responseBody);
+
+          // then
+          resultActions.andExpect(status().isCreated());
+     }
+
+     @WithUserDetails(value = "ssar", setupBefore = TestExecutionEvent.TEST_EXECUTION)
+     @Test
+     public void transferAccount_test() throws Exception {
+          // given
+          AccountTransferRequestDto accountTransferRequestDto = new AccountTransferRequestDto();
+          accountTransferRequestDto.setWithdrawNumber(1111L);
+          accountTransferRequestDto.setDepositNumber(2222L);
+          accountTransferRequestDto.setWithdrawPassword(1234L);
+          accountTransferRequestDto.setAmount(100L);
+          accountTransferRequestDto.setGubun("TRANSFER");
+
+          String requestBody = om.writeValueAsString(accountTransferRequestDto);
+          System.out.println("테스트 : " + requestBody);
+
+          // when
+          ResultActions resultActions = mvc
+                    .perform(post("/api/s/account/transfer").content(requestBody)
                               .contentType(MediaType.APPLICATION_JSON));
           String responseBody = resultActions.andReturn().getResponse().getContentAsString();
           System.out.println("테스트 : " + responseBody);

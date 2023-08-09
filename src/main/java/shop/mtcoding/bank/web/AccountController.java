@@ -19,9 +19,11 @@ import shop.mtcoding.bank.config.auth.LoginUser;
 import shop.mtcoding.bank.dto.ResponseDto;
 import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountDepositRequestDto;
 import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountSaveRequestDto;
+import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountWithdrawRequestDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountDepositResponseDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountListResponseDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountSaveResponseDto;
+import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountWithdrawResponseDto;
 import shop.mtcoding.bank.service.AccountService;
 
 @RequiredArgsConstructor
@@ -57,5 +59,14 @@ public class AccountController {
                BindingResult bindingResult) {
           AccountDepositResponseDto accountDepositResponseDto = accountService.계좌입금(accountDepositRequestDto);
           return new ResponseEntity<>(new ResponseDto<>(1, "계좌입금 성공", accountDepositResponseDto), HttpStatus.CREATED);
+     }
+
+     @PostMapping("/s/account/withdraw")
+     public ResponseEntity<?> withdrawAccount(@RequestBody @Valid AccountWithdrawRequestDto accountWithdrawRequestDto,
+               BindingResult bindingResult,
+               @AuthenticationPrincipal LoginUser loginUser) {
+          AccountWithdrawResponseDto accountWithdrawResponseDto = accountService.계좌출금(accountWithdrawRequestDto,
+                    loginUser.getUser().getId());
+          return new ResponseEntity<>(new ResponseDto<>(1, "계좌출금 성공", accountWithdrawResponseDto), HttpStatus.CREATED);
      }
 }

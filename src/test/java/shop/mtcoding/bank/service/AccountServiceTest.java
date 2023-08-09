@@ -27,6 +27,7 @@ import shop.mtcoding.bank.domain.user.User;
 import shop.mtcoding.bank.domain.user.UserRepository;
 import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountDepositRequestDto;
 import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountSaveRequestDto;
+import shop.mtcoding.bank.dto.account.AccountRequestDto.AccountWithdrawRequestDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountDepositResponseDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountListResponseDto;
 import shop.mtcoding.bank.dto.account.AccountResponseDto.AccountSaveResponseDto;
@@ -178,6 +179,7 @@ public class AccountServiceTest extends DummyObject {
           // given
           Account account = newMockAccount(1L, 1111L, 1000L, null);
           Long amount = 0L;
+
           // when
           if (amount <= 0L) {
                throw new CustomApiException("0원 이하의 금액을 입금할 수 없습니다.");

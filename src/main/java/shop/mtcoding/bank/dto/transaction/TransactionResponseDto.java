@@ -12,27 +12,27 @@ import shop.mtcoding.bank.util.CustomDateUtil;
 
 public class TransactionResponseDto {
 
-     @Getter
      @Setter
+     @Getter
      public static class TransactionListResponseDto {
 
-          List<TransactionDto> transactions = new ArrayList<>();
+          private List<TransactionDto> transactions = new ArrayList<>();
 
           public TransactionListResponseDto(List<Transaction> transactions, Account account) {
                this.transactions = transactions.stream()
                          .map((transaction) -> new TransactionDto(transaction, account.getNumber()))
                          .collect(Collectors.toList());
-               ;
+
           }
 
-          @Getter
           @Setter
+          @Getter
           public class TransactionDto {
                private Long id;
                private String gubun;
                private Long amount;
                private String sender;
-               private String receiver;
+               private String reciver;
                private String tel;
                private String createdAt;
                private Long balance;
@@ -42,23 +42,23 @@ public class TransactionResponseDto {
                     this.gubun = transaction.getGubun().getValue();
                     this.amount = transaction.getAmount();
                     this.sender = transaction.getSender();
-                    this.receiver = transaction.getReceiver();
+                    this.reciver = transaction.getReceiver();
                     this.createdAt = CustomDateUtil.toStringFormat(transaction.getCreateAt());
                     this.tel = transaction.getTel() == null ? "없음" : transaction.getTel();
 
-                    // 출금(null) 입금(값), 출금(값) 입금(null)
+                    // 1111 계좌의 입출금 내역 (출금계좌 = null, 입금계좌 = 값) (출금계좌 = 값, 입금계좌 = null)
                     if (transaction.getDepositAccount() == null) {
-                         this.balance = transaction.getDepositAccountBalance();
-                    } else if (transaction.getWithdrawAccount() == null) {
                          this.balance = transaction.getWithdrawAccountBalance();
-                    } else { // 출금(값) 입금(값)
+                    } else if (transaction.getWithdrawAccount() == null) {
+                         this.balance = transaction.getDepositAccountBalance();
+                    } else {
+                         // 1111 계좌의 입출금 내역 (출금계좌 = 값, 입금계좌 = 값)
                          if (accountNumber.longValue() == transaction.getDepositAccount().getNumber()) {
                               this.balance = transaction.getDepositAccountBalance();
                          } else {
                               this.balance = transaction.getWithdrawAccountBalance();
                          }
                     }
-
                }
           }
      }

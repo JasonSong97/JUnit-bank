@@ -1,5 +1,7 @@
 package shop.mtcoding.bank.domian.trasaction;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -35,6 +37,7 @@ public class TransactionRepositoryImpl extends DummyObject {
      public void setUp() {
           autoIncrementReset();
           dataSetting();
+          em.clear();
      }
 
      @Test
@@ -75,12 +78,15 @@ public class TransactionRepositoryImpl extends DummyObject {
                System.out.println("테스트 : reciver : " + transaction.getReceiver());
                System.out.println("테스트 : withdrawAccount잔액 : " + transaction.getWithdrawAccountBalance());
                System.out.println("테스트 : depositAccount잔액 : " + transaction.getDepositAccountBalance());
+               // System.out.println("테스트 : 잔액 : " +
+               // transaction.getWithdrawAccount().getBalance());
+               // System.out.println("테스트 : fullname : " +
+               // transaction.getWithdrawAccount().getUser().getFullname());
                System.out.println("테스트 : ======================================");
-
           });
 
           // then
-
+          assertThat(transactionListPS.get(3).getDepositAccountBalance()).isEqualTo(800L);
      }
 
      private void dataSetting() {

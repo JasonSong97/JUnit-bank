@@ -87,7 +87,7 @@ public class SecurityConfig {
           configuration.addAllowedMethod("*"); // GET, POST, DELETE, PUT 전부 허용
           configuration.addAllowedOriginPattern("*"); // 모든 IP 주소 허용 (FE IP만 허용)
           configuration.setAllowCredentials(true); // 클라이언트쪽에서 쿠키 요청 허용(클라이언트쪽에서 보내는게 가능)
-
+          configuration.addExposedHeader("Authorization"); // 브라우저에 Authorization 노출 가능
           UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
           source.registerCorsConfiguration("/**", configuration); // 모든 주소요청에 위에 설정을 넣기
           return source;

@@ -4,6 +4,10 @@ import org.junit.jupiter.api.Test;
 
 public class LongTest {
 
+     /**
+      * long : -126 ~ 127 까지 비교 가능
+      */
+
      @Test
      public void long_test1() throws Exception {
           Long long1 = 1111L;

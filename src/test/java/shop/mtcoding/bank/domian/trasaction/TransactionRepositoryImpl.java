@@ -61,6 +61,28 @@ public class TransactionRepositoryImpl extends DummyObject {
           });
      }
 
+     @Test
+     public void findTransactionList_all_test() throws Exception {
+          // given
+          Long accountId = 1L;
+
+          // when
+          List<Transaction> transactionListPS = transactionRepository.findTransactionList(accountId, "ALL", 0);
+          transactionListPS.forEach((transaction) -> {
+               System.out.println("테스트 : id : " + transaction.getId());
+               System.out.println("테스트 : amount : " + transaction.getAmount());
+               System.out.println("테스트 : sender : " + transaction.getSender());
+               System.out.println("테스트 : reciver : " + transaction.getReceiver());
+               System.out.println("테스트 : withdrawAccount잔액 : " + transaction.getWithdrawAccountBalance());
+               System.out.println("테스트 : depositAccount잔액 : " + transaction.getDepositAccountBalance());
+               System.out.println("테스트 : ======================================");
+
+          });
+
+          // then
+
+     }
+
      private void dataSetting() {
           User ssar = userRepository.save(newUser("ssar", "쌀"));
           User cos = userRepository.save(newUser("cos", "코스,"));

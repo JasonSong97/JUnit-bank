@@ -1,8 +1,14 @@
 package shop.mtcoding.bank.domian.trasaction;
 
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import shop.mtcoding.bank.config.dummy.DummyObject;
 import shop.mtcoding.bank.domain.account.Account;
@@ -12,6 +18,7 @@ import shop.mtcoding.bank.domain.transaction.TransactionRepository;
 import shop.mtcoding.bank.domain.user.User;
 import shop.mtcoding.bank.domain.user.UserRepository;
 
+@ActiveProfiles("test")
 @DataJpaTest
 public class TransactionRepositoryImpl extends DummyObject {
 
@@ -21,10 +28,37 @@ public class TransactionRepositoryImpl extends DummyObject {
      private AccountRepository accountRepository;
      @Autowired
      private TransactionRepository transactionRepository;
+     @Autowired
+     private EntityManager em;
 
      @BeforeEach
      public void setUp() {
+          autoIncrementReset();
           dataSetting();
+     }
+
+     @Test
+     public void dataJpa_test1() {
+          List<Transaction> transactionList = transactionRepository.findAll();
+          transactionList.forEach((transaction) -> {
+               System.out.println("테스트 : " + transaction.getId());
+               System.out.println("테스트 : " + transaction.getSender());
+               System.out.println("테스트 : " + transaction.getReceiver());
+               System.out.println("테스트 : " + transaction.getGubun());
+               System.out.println("테스트 : ===============================");
+          });
+     }
+
+     @Test
+     public void dataJpa_test2() {
+          List<Transaction> transactionList = transactionRepository.findAll();
+          transactionList.forEach((transaction) -> {
+               System.out.println("테스트 : " + transaction.getId());
+               System.out.println("테스트 : " + transaction.getSender());
+               System.out.println("테스트 : " + transaction.getReceiver());
+               System.out.println("테스트 : " + transaction.getGubun());
+               System.out.println("테스트 : ===============================");
+          });
      }
 
      private void dataSetting() {
@@ -48,5 +82,11 @@ public class TransactionRepositoryImpl extends DummyObject {
                     .save(newTransferTransaction(ssarAccount1, loveAccount, accountRepository));
           Transaction transferTransaction3 = transactionRepository
                     .save(newTransferTransaction(cosAccount, ssarAccount1, accountRepository));
+     }
+
+     private void autoIncrementReset() {
+          em.createNativeQuery("ALTER TABLE user_tb ALTER COLUMN id RESTART WITH 1").executeUpdate();
+          em.createNativeQuery("ALTER TABLE account_tb ALTER COLUMN id RESTART WITH 1").executeUpdate();
+          em.createNativeQuery("ALTER TABLE transaction_tb ALTER COLUMN id RESTART WITH 1").executeUpdate();
      }
 }

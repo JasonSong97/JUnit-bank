@@ -14,7 +14,7 @@
 <p align="center">
 <img src="https://github.com/smash-teams/smash-teams-BE/assets/107292103/d68bc746-397f-4fd0-8820-837aa6f18a35" width="70%" height="70%"/>
 </p>
-<h2 align=center>ATM처럼 이체 내역 확인, 입금, 출금할 수 있는 Bank Application 💵, JUnit Bank</h2>
+<h2 align=center>ATM처럼 사용할 수 있는 CSR 기반의 Bank Application 💵, JUnit Bank</h2>
 
 ## 블로그 일지
 
@@ -29,7 +29,7 @@
 <table>
 <th style={{width: "25%"}}>
   <div style={{width: "50%"}}>
-    <img src="" style={{width: "30%", height: "30%", objectFit: "contain"}}/>
+    <img src="https://github.com/JasonSong97/junit-bank/assets/107292103/5774a570-5aad-4d42-a8ac-8f933e810196" style={{width: "30%", height: "30%", objectFit: "contain"}}/>
   </div>
   <div align="center">
  로그인
@@ -38,33 +38,34 @@
  
  <th style={{width: "25%"}}>
   <div style={{width: "50%"}}>
-    <img src="" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+    <img src="https://github.com/JasonSong97/junit-bank/assets/107292103/ea034011-4f8a-4d88-a697-cc20a347ab42" style={{width: "30%", height: "30%", objectFit: "contain"}}/>
   </div>
   <div align="center">
  회원가입
   </div>
 </th>
 </table>
----
 <br/>
+
+---
 
 ### Account, Transaction
 <table>
 <th style={{width: "25%"}}>
   <div style={{width: "50%"}}>
-    <img src="" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+    <img src="https://github.com/JasonSong97/junit-bank/assets/107292103/7700d800-4030-4db8-89f3-5e29ab05acbe" style={{width: "30%", height: "30%", objectFit: "contain"}}/>
   </div>
   <div align="center">
- 계좌등록(토큰)
+ 계좌등록(JWT)
   </div>
 </th>
 
 <th style={{width: "25%"}}>
   <div style={{width: "50%"}}>
-    <img src="" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+    <img src="https://github.com/JasonSong97/junit-bank/assets/107292103/d8c4a8f6-814f-4f63-a881-f8168a31974c" style={{width: "30%", height: "30%", objectFit: "contain"}}/>
   </div>
   <div align="center">
- 계좌삭제(토큰)
+ 계좌삭제(JWT)
   </div>
 </th>
 </table>
@@ -72,19 +73,19 @@
 <table>
 <th style={{width: "25%"}}>
   <div style={{width: "50%"}}>
-    <img src="" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+    <img src="https://github.com/JasonSong97/junit-bank/assets/107292103/dbee54da-ccbc-4655-b47c-17e20d01ee2c" style={{width: "30%", height: "30%", objectFit: "contain"}}/>
   </div>
   <div align="center">
- 계좌입금(토큰)
+ 계좌입금(JWT)
   </div>
 </th>
  
  <th style={{width: "25%"}}>
   <div style={{width: "50%"}}>
-    <img src="" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+    <img src="https://github.com/JasonSong97/junit-bank/assets/107292103/a72e2fee-5d23-4524-9d71-d03763f2d625" style={{width: "30%", height: "30%", objectFit: "contain"}}/>
   </div>
   <div align="center">
- 계좌출금(토큰)
+ 계좌출금(JWT)
   </div>
 </th>
 </table>
@@ -92,19 +93,19 @@
 <table>
 <th style={{width: "25%"}}>
   <div style={{width: "50%"}}>
-    <img src="" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+    <img src="https://github.com/JasonSong97/junit-bank/assets/107292103/71eed477-8ba9-43e2-b251-758e91dd8a1d" style={{width: "30%", height: "30%", objectFit: "contain"}}/>
   </div>
   <div align="center">
- 계좌이체(토큰)
+ 계좌이체(JWT)
   </div>
 </th>
  
  <th style={{width: "25%"}}>
   <div style={{width: "50%"}}>
-    <img src="" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+    <img src="https://github.com/JasonSong97/junit-bank/assets/107292103/7cc24965-b373-46f1-85d2-7fec538a3ed8" style={{width: "30%", height: "30%", objectFit: "contain"}}/>
   </div>
   <div align="center">
- 계좌상세보기(토큰)
+ 계좌상세보기(JWT)
   </div>
 </th>
 </table>
@@ -112,19 +113,19 @@
 <table>
 <th style={{width: "25%"}}>
   <div style={{width: "50%"}}>
-    <img src="" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+    <img src="https://github.com/JasonSong97/junit-bank/assets/107292103/3ea258ed-04cc-4abf-9411-81eaa49ec385" style={{width: "30%", height: "30%", objectFit: "contain"}}/>
   </div>
   <div align="center">
- 계좌목록보기(토큰)
+ 계좌목록보기(JWT)
   </div>
 </th>
  
  <th style={{width: "25%"}}>
   <div style={{width: "50%"}}>
-    <img src="" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+    <img src="https://github.com/JasonSong97/junit-bank/assets/107292103/dddded6a-c301-4245-9aba-674f8bef9036" style={{width: "30%", height: "30%", objectFit: "contain"}}/>
   </div>
   <div align="center">
- 입출금목록보기(토큰)
+ 입출금목록보기(JWT)
   </div>
 </th>
 </table>
@@ -210,7 +211,7 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2023 [team-smash](https://github.com/smash-teams/smash-teams-BE).<br />
+Copyright © 2023 [JUnit bank](https://github.com/JasonSong97/junit-bank).<br />
 This project is [MIT](https://github.com/wupitch/wupitch-server/blob/main/LICENSE) licensed.
 
 ***

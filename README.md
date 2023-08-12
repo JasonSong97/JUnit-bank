@@ -164,6 +164,7 @@
 ## 개발환경
 
 - #### backend
+    - VScode
     - java-11
     - gradle
     - spring-boot 2.7.9
@@ -194,7 +195,7 @@
 👤 **송재근**
 
 - Role
-  - Spring Security, JWT 및 AOP 세팅
+  - Spring Security, JWT 및 AOP 세팅, JUnit 단위 테스트
   - API(10개)
     - 로그인, 회원가입
     - 계좌등록, 계좌삭제, 계좌입금, 계좌출금, 계좌이체, 계좌상세보기, 계좌목록보기(유저별)

@@ -18,11 +18,11 @@
 
 ## 블로그 일지
 
-[JUnit Bank 기록](https://velog.io/@jaegeunsong_1997/series/SSR-%EA%B8%B0%EB%B0%98-JunitBank-Application)
+### 💎 [JUnit Bank 블로그 기록](https://velog.io/@jaegeunsong_1997/series/SSR-%EA%B8%B0%EB%B0%98-JunitBank-Application)
 
 ## 새롭게 알게된 기록
 
-[노션 기록](https://www.notion.so/8218ffb7495a46cdb9d093f02f07fc2c?pvs=4)
+### 💎 [노션 지식 기록](https://www.notion.so/8218ffb7495a46cdb9d093f02f07fc2c?pvs=4)
 
 ## UI
 ### Login, Join
@@ -178,14 +178,29 @@
 <br/>
 
 ## ERD
-![erd]()
+![erd](https://github.com/JasonSong97/junit-bank/assets/107292103/2c4eb090-d3d2-4be0-8772-7457eca2780a)
 
 <br/>
 
 ## 개발일지
 
 👤 **Jason_song97**
-- 예시 (23/5/7) - `commit` : []()
+
+
+- DataIntegrityViolation 에러 해결 (23/8/10) - `commit` : [d65e00d](https://github.com/JasonSong97/junit-bank/commit/d65e00d9822f00547ada0dc5668be4c97e478719)
+- 입출금내역 JUnit 테스트 (23/8/10) - `commit` : [68a0fe1](https://github.com/JasonSong97/junit-bank/commit/68a0fe1b6843c3c47416c4ab0ee265d29555e84f)
+- PK 증가로 인한 auto_increment 초기화 (23/8/10) - `commit` : [2d3f573](https://github.com/JasonSong97/junit-bank/commit/2d3f57359cf76d092220aa8998ac792c8d5df164)
+- 입출금내역 JPQL 동적쿼리 생성 (23/8/10) - `commit` : [dcc7d69](https://github.com/JasonSong97/junit-bank/commit/dcc7d695dc8fd5f8d0e68e375fc9077112a5f258)
+- 계좌이체 JUnit 테스트 (23/8/9) - `commit` : [aa68461](https://github.com/JasonSong97/junit-bank/commit/aa684613ff4927cf6356f2e78202d5a4de064963)
+- 계좌출금 Junit 테스트 (23/8/9) - `commit` : [a57d34a](https://github.com/JasonSong97/junit-bank/commit/a57d34a9d86b48f8719bbe64b2ffe7a5b7186bad)
+- 본인계좌목록보기 JUnit 테스트 (23/8/7) - `commit` : [6ccc47d](https://github.com/JasonSong97/junit-bank/commit/6ccc47d6cd5d6a6810c3540023ec02bce07c8b38)
+- 계좌등록 JUnit 테스트 (23/8/6) - `commit` : [32a5d8f](https://github.com/JasonSong97/junit-bank/commit/32a5d8f427c22c3b978fa3b99313edf2590dc5b4)
+- JWT 인가 필터 세팅, 등록 (23/8/4) - `commit` : [4da66b7](https://github.com/JasonSong97/junit-bank/commit/4da66b710bcfd1f98715416f5566ae12cc8813a0)
+- JWT Filter 등록 (23/8/4) - `commit` : [05e37b9](https://github.com/JasonSong97/junit-bank/commit/05e37b9235f3ae6a339b51374e113670e7cd8b46)
+- JWT Filter 세팅 (23/8/4) - `commit` : [076b84a](https://github.com/JasonSong97/junit-bank/commit/076b84a7d1742b7b43b36eeadfd22b97aac7b129)
+- JWT 기본 세팅 (23/8/4) - `commit` : [c149be6](https://github.com/JasonSong97/junit-bank/commit/c149be61f67a813c800a58ec98d2e161bdba8682)
+- 회원가입 컨트롤러 AOP 및 유효성 검사 처 (23/8/4) - `commit` : [96f2342](https://github.com/JasonSong97/junit-bank/commit/96f2342e8556af39d7c77522c36f487e990b5e70)
+- SecurityConfig 세 (23/8/3) - `commit` : [293a4c3](https://github.com/JasonSong97/junit-bank/commit/293a4c3c05496df277eb918e7827977825892369)
 
 
 <br/>
@@ -195,7 +210,7 @@
 👤 **송재근**
 
 - Role
-  - Spring Security, JWT 및 AOP 세팅, JUnit 단위 테스트
+  - ERD 설계, Spring Security, JWT 및 AOP 세팅, JUnit 단위 테스트, RestDoc 생성
   - API(10개)
     - 로그인, 회원가입
     - 계좌등록, 계좌삭제, 계좌입금, 계좌출금, 계좌이체, 계좌상세보기, 계좌목록보기(유저별)

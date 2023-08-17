@@ -13,7 +13,7 @@ import shop.mtcoding.bank.domain.user.UserEnum;
 
 public class DummyObject {
 
-     protected Transaction newWithdrawTransaction(Account account, AccountRepository accountRepository) {
+     public Transaction newWithdrawTransaction(Account account, AccountRepository accountRepository) {
           account.withdraw(100L);
 
           if (accountRepository != null) {
@@ -32,7 +32,7 @@ public class DummyObject {
           return transaction;
      }
 
-     protected Transaction newDepositTransaction(Account account, AccountRepository accountRepository) {
+     public Transaction newDepositTransaction(Account account, AccountRepository accountRepository) {
           account.deposit(100L);
 
           if (accountRepository != null) {
@@ -52,7 +52,7 @@ public class DummyObject {
           return transaction;
      }
 
-     protected Transaction newTransferTransaction(Account withdrawAccount, Account depositAccount,
+     public Transaction newTransferTransaction(Account withdrawAccount, Account depositAccount,
                AccountRepository accountRepository) {
           withdrawAccount.withdraw(100L);
           depositAccount.deposit(100L);
@@ -74,7 +74,7 @@ public class DummyObject {
           return transaction;
      }
 
-     protected static User newUser(String username, String fullname) {
+     public static User newUser(String username, String fullname) {
           BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
           String encPassword = passwordEncoder.encode("1234");
           return User.builder()
@@ -86,7 +86,7 @@ public class DummyObject {
                     .build();
      }
 
-     protected static User newMockUser(Long id, String username, String fullname) {
+     public static User newMockUser(Long id, String username, String fullname) {
           BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
           String encPassword = passwordEncoder.encode("1234");
           return User.builder()
@@ -101,7 +101,7 @@ public class DummyObject {
                     .build();
      }
 
-     protected static Account newAccount(Long number, User user) {
+     public static Account newAccount(Long number, User user) {
           return Account.builder()
                     .number(number)
                     .password(1234L)
@@ -110,7 +110,7 @@ public class DummyObject {
                     .build();
      }
 
-     protected static Account newMockAccount(Long id, Long number, Long balance, User user) {
+     public static Account newMockAccount(Long id, Long number, Long balance, User user) {
           return Account.builder()
                     .id(id)
                     .number(number)
@@ -123,7 +123,7 @@ public class DummyObject {
      }
 
      // 입금 트랜젝션 -> 계좌 1100원 변경 -> 입금 트랜젝션 히스토리가 생성되어야 함.
-     protected static Transaction newMockDepositTransaction(Long id, Account account) {
+     public static Transaction newMockDepositTransaction(Long id, Account account) {
           account.deposit(100L);
           return Transaction.builder()
                     .id(id)

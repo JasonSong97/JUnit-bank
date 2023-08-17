@@ -1,0 +1,129 @@
+ifndef::snippets[]
+:snippets: ./build/generated-snippets
+endif::[]
+
+:account: account-controller-test
+:transaction: transaction-controller-test
+:user: user-controller-test
+
+= REST API
+:toc: left
+:toclevels: 2
+:source-highlighter: highlightjs
+
+
+
+== 유저 API
+=== 회원가입 (성공)
+===== Request Example
+include::{snippets}/{user}/join_success_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{user}/join_success_test/http-response.adoc[]
+
+===== Curl
+include::{snippets}/{user}/join_success_test/curl-request.adoc[]
+
+=== 회원가입 (실패)
+===== Request Example
+include::{snippets}/{user}/join_fail_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{user}/join_fail_test/http-response.adoc[]
+
+===== Curl
+include::{snippets}/{user}/join_fail_test/curl-request.adoc[]
+
+
+
+== 계좌 API
+=== 계좌등록 (성공)
+===== Request Example
+include::{snippets}/{account}/save_account_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{account}/save_account_test/http-response.adoc[]
+
+===== Curl
+include::{snippets}/{account}/save_account_test/curl-request.adoc[]
+include::{snippets}/{account}/save_account_test/request-headers.adoc[]
+
+=== 계좌목록보기 유저별 (성공)
+===== Request Example
+include::{snippets}/{account}/find_user_account_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{account}/find_user_account_test/http-response.adoc[]
+
+===== Curl
+include::{snippets}/{account}/find_user_account_test/curl-request.adoc[]
+include::{snippets}/{account}/find_user_account_test/request-headers.adoc[]
+
+=== 계좌삭제 (성공)
+===== Request Example
+include::{snippets}/{account}/delete_account_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{account}/delete_account_test/http-response.adoc[]
+
+===== Curl
+include::{snippets}/{account}/delete_account_test/curl-request.adoc[]
+include::{snippets}/{account}/delete_account_test/request-headers.adoc[]
+
+=== 계좌입금 (성공)
+===== Request Example
+include::{snippets}/{account}/deposit_account_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{account}/deposit_account_test/http-response.adoc[]
+
+===== Curl
+include::{snippets}/{account}/deposit_account_test/curl-request.adoc[]
+include::{snippets}/{account}/deposit_account_test/request-headers.adoc[]
+
+=== 계좌출금 (성공)
+===== Request Example
+include::{snippets}/{account}/withdraw_account_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{account}/withdraw_account_test/http-response.adoc[]
+
+===== Curl
+include::{snippets}/{account}/withdraw_account_test/curl-request.adoc[]
+include::{snippets}/{account}/withdraw_account_test/request-headers.adoc[]
+
+=== 계좌이체 (성공)
+===== Request Example
+include::{snippets}/{account}/transfer_account_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{account}/transfer_account_test/http-response.adoc[]
+
+===== Curl
+include::{snippets}/{account}/transfer_account_test/curl-request.adoc[]
+include::{snippets}/{account}/transfer_account_test/request-headers.adoc[]
+
+=== 계좌상세보기 (성공)
+===== Request Example
+include::{snippets}/{account}/find_detail_account_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{account}/find_detail_account_test/http-response.adoc[]
+
+===== Curl
+include::{snippets}/{account}/find_detail_account_test/curl-request.adoc[]
+include::{snippets}/{account}/find_detail_account_test/request-headers.adoc[]
+
+
+
+== 트랜젝션 API
+=== 입출금목록보기 (성공)
+===== Request Example
+include::{snippets}/{transaction}/find_transaction_list_success_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{transaction}/find_transaction_list_success_test/http-response.adoc[]
+
+===== Curl
+include::{snippets}/{transaction}/find_transaction_list_success_test/curl-request.adoc[]
+include::{snippets}/{transaction}/find_transaction_list_success_test/request-headers.adoc[]

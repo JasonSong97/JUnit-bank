@@ -6,8 +6,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import javax.persistence.EntityManager;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -16,18 +18,24 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.bank.config.dummy.DummyObject;
+import shop.mtcoding.bank.core.RestDoc;
 import shop.mtcoding.bank.domain.user.UserRepository;
 import shop.mtcoding.bank.dto.user.UserRequestDto.JoinRequestDto;
 
+@DisplayName("유저 API")
+@AutoConfigureRestDocs(uriScheme = "http", uriHost = "localhost", uriPort = 8081)
 @ActiveProfiles("test") // 테스트 모드
 @Sql("classpath:db/teardown.sql") // BeforeEach 직전 실행
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
-public class UserControllerTest extends DummyObject {
+public class UserControllerTest extends RestDoc {
+
+     private DummyObject dummy = new DummyObject();
 
      @Autowired
      private MockMvc mvc;
@@ -40,10 +48,11 @@ public class UserControllerTest extends DummyObject {
 
      @BeforeEach
      public void setUp() {
-          userRepository.save(newUser("ssar", "쌀"));
+          userRepository.save(dummy.newUser("ssar", "쌀"));
           em.clear();
      }
 
+     @DisplayName("회원가입 성공")
      @Test
      public void join_success_test() throws Exception {
           // given
@@ -65,8 +74,10 @@ public class UserControllerTest extends DummyObject {
 
           // then
           resultActions.andExpect(status().isCreated());
+          resultActions.andDo(MockMvcResultHandlers.print()).andDo(document);
      }
 
+     @DisplayName("회원가입 실패")
      @Test
      public void join_fail_test() throws Exception {
           // given
@@ -88,5 +99,6 @@ public class UserControllerTest extends DummyObject {
 
           // then
           resultActions.andExpect(status().isBadRequest());
+          resultActions.andDo(MockMvcResultHandlers.print()).andDo(document);
      }
 }

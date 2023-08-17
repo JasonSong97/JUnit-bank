@@ -166,12 +166,6 @@
 
 <br/>
 
-## 시스템 구성도
-
-![system-architecture]()
-
-<br/>
-
 ## Usage
 
 ```sh
@@ -216,6 +210,16 @@ $ ./gradlew clean build
     - 계좌등록, 계좌삭제, 계좌입금, 계좌출금, 계좌이체, 계좌상세보기, 계좌목록보기(유저별)
     - 입출금내역보기
 - Github: [@Jason_song97](https://github.com/JasonSong97)
+
+<br/>
+
+## Author & Role
+
+- 앞으로 추가해야 할 사항
+  - CI/CD 추가 후 실 배포
+  - Sentry 추가
+  - Error 테이블 추가, 어노테이션 붙이기
+  - 시스템 구성도 깃허브 추가
 
 <br/>
 

@@ -141,21 +141,18 @@
 
 ## 기술스택
 
-<p>
-  <img src="https://img.shields.io/badge/OpenJDK-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white">
-  <img src="https://img.shields.io/badge/Spring_Boot-F2F4F9?style=for-the-badge&logo=spring-boot" />
-  <img src="https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=Spring-Security&logoColor=white"/> 
-  <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white" />
-  <img src="https://img.shields.io/badge/Spring%20REST%20Docs-6DB33F?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/JUnit5-black?style=for-the-badge" />
-</p>
-<p>
-  <img src="https://img.shields.io/badge/H2-0052CC?style=for-the-badge&logo=h2" />
-</p>
-<p>
-  <img src="https://img.shields.io/badge/Git-black?style=for-the-badge&logo=Git&logoColor=F05032"/> 
-  <img src="https://img.shields.io/badge/Github-black?style=for-the-badge&logo=Github&logoColor=181717"/>
-</p>
+<p align="center">
+  <img src="https://img.shields.io/badge/-JAVA-orange"/>&nbsp
+  <img src="https://img.shields.io/badge/-Spring-yellow"/>&nbsp
+  <img src="https://img.shields.io/badge/-SpringBoot-navy"/>&nbsp
+  <img src="https://img.shields.io/badge/-JWT-yellow"/>&nbsp
+  <img src="https://img.shields.io/badge/-JPA-blue"/>
+  <img src="https://img.shields.io/badge/-JUnit-white"/>&nbsp
+  <img src="https://img.shields.io/badge/-H2-red"/>&nbsp
+  <img src="https://img.shields.io/badge/-RestDoc-navy"/>&nbsp
+  <img src="https://img.shields.io/badge/-Git-black"/>&nbsp
+  <img src="https://img.shields.io/badge/-Github-gray"/>&nbsp
+ </p>
 
 <br/>
 
@@ -190,20 +187,19 @@ $ ./gradlew clean build
 
 👤 **Jason_song97**
 
-
+- RestDoc 코드 추가 및 생성 (23/8/17) - `commit` : [f91aa9c](https://github.com/JasonSong97/junit-bank/commit/f91aa9c4f6a96765285929e374ab0819db098d09)
 - DataIntegrityViolation 에러 해결 (23/8/10) - `commit` : [d65e00d](https://github.com/JasonSong97/junit-bank/commit/d65e00d9822f00547ada0dc5668be4c97e478719)
-- 입출금내역 JUnit 테스트 (23/8/10) - `commit` : [68a0fe1](https://github.com/JasonSong97/junit-bank/commit/68a0fe1b6843c3c47416c4ab0ee265d29555e84f)
+- 계좌상세보기API, JUnit test (23/8/10) - `commit` : [76bb4b0](https://github.com/JasonSong97/junit-bank/commit/76bb4b0a2c5edd116ced746bbaab72cfb66f16bc) [391e2df](https://github.com/JasonSong97/junit-bank/commit/391e2dff24fb122889b0b9dfa418f855748dd2a0)
+- 입출금내역보기API JPQL 동적쿼리 생성, JUnit test(23/8/10) - `commit` : [dcc7d69](https://github.com/JasonSong97/junit-bank/commit/dcc7d695dc8fd5f8d0e68e375fc9077112a5f258) [3cd3ac2](https://github.com/JasonSong97/junit-bank/commit/3cd3ac2fb00364a7023e74b94e4d4041f2d9c277) [68a0fe1](https://github.com/JasonSong97/junit-bank/commit/68a0fe1b6843c3c47416c4ab0ee265d29555e84f)
 - PK 증가로 인한 auto_increment 초기화 (23/8/10) - `commit` : [2d3f573](https://github.com/JasonSong97/junit-bank/commit/2d3f57359cf76d092220aa8998ac792c8d5df164)
-- 입출금내역 JPQL 동적쿼리 생성 (23/8/10) - `commit` : [dcc7d69](https://github.com/JasonSong97/junit-bank/commit/dcc7d695dc8fd5f8d0e68e375fc9077112a5f258)
-- 계좌이체 JUnit 테스트 (23/8/9) - `commit` : [aa68461](https://github.com/JasonSong97/junit-bank/commit/aa684613ff4927cf6356f2e78202d5a4de064963)
-- 계좌출금 Junit 테스트 (23/8/9) - `commit` : [a57d34a](https://github.com/JasonSong97/junit-bank/commit/a57d34a9d86b48f8719bbe64b2ffe7a5b7186bad)
-- 본인계좌목록보기 JUnit 테스트 (23/8/7) - `commit` : [6ccc47d](https://github.com/JasonSong97/junit-bank/commit/6ccc47d6cd5d6a6810c3540023ec02bce07c8b38)
-- 계좌등록 JUnit 테스트 (23/8/6) - `commit` : [32a5d8f](https://github.com/JasonSong97/junit-bank/commit/32a5d8f427c22c3b978fa3b99313edf2590dc5b4)
-- JWT 인가 필터 세팅, 등록 (23/8/4) - `commit` : [4da66b7](https://github.com/JasonSong97/junit-bank/commit/4da66b710bcfd1f98715416f5566ae12cc8813a0)
-- JWT Filter 등록 (23/8/4) - `commit` : [05e37b9](https://github.com/JasonSong97/junit-bank/commit/05e37b9235f3ae6a339b51374e113670e7cd8b46)
-- JWT Filter 세팅 (23/8/4) - `commit` : [076b84a](https://github.com/JasonSong97/junit-bank/commit/076b84a7d1742b7b43b36eeadfd22b97aac7b129)
-- JWT 기본 세팅 (23/8/4) - `commit` : [c149be6](https://github.com/JasonSong97/junit-bank/commit/c149be61f67a813c800a58ec98d2e161bdba8682)
+- 계좌이체API, JUnit test (23/8/9) - `commit` : [f49b42e](https://github.com/JasonSong97/junit-bank/commit/f49b42ee0c1ecb04f6bd8a0280cef93de8312dd2) [aa68461](https://github.com/JasonSong97/junit-bank/commit/aa684613ff4927cf6356f2e78202d5a4de064963)
+- 계좌출금API, JUnit test (23/8/9) - `commit` : [9ba6898](https://github.com/JasonSong97/junit-bank/commit/9ba68986e0673349ba1ad88afa225e70e1793410) [c02cf97](https://github.com/JasonSong97/junit-bank/commit/c02cf97184633b8e0443432b90fd24b91d187a09) [a57d34a](https://github.com/JasonSong97/junit-bank/commit/a57d34a9d86b48f8719bbe64b2ffe7a5b7186bad)
+- 계좌삭제API, JUnit test (23/8/8) - `commit` : [ce39cbd](https://github.com/JasonSong97/junit-bank/commit/ce39cbd511aa0f938db8be45a62837abca01a66b) [3e05ace](https://github.com/JasonSong97/junit-bank/commit/3e05aceabed7254d2c75ffc747af74b2f44c4878)
+- 본인계좌목록보기API, JUnit test (23/8/7) - `commit` : [671cea5](https://github.com/JasonSong97/junit-bank/commit/671cea5a036392865fd53a18da7623e829187815) [8a6cc9f](https://github.com/JasonSong97/junit-bank/commit/8a6cc9f1faea5f577dc102b6f003dccc1738e277) [6ccc47d](https://github.com/JasonSong97/junit-bank/commit/6ccc47d6cd5d6a6810c3540023ec02bce07c8b38)
+- 계좌등록API, JUnit test (23/8/6) - `commit` : [22a83ff](https://github.com/JasonSong97/junit-bank/commit/22a83ffc7d01acf6b3cafdd94544c426ee73e99c) [3ce5b3e](https://github.com/JasonSong97/junit-bank/commit/3ce5b3e07dacbef3676c93e56ce1cc3d6951211d)  [32a5d8f](https://github.com/JasonSong97/junit-bank/commit/32a5d8f427c22c3b978fa3b99313edf2590dc5b4)
+- JWT 기본 세팅, Filter 세팅 및 등록, 인가필터 등록 (23/8/4) - `commit` : [c149be6](https://github.com/JasonSong97/junit-bank/commit/c149be61f67a813c800a58ec98d2e161bdba8682) [076b84a](https://github.com/JasonSong97/junit-bank/commit/076b84a7d1742b7b43b36eeadfd22b97aac7b129) [05e37b9](https://github.com/JasonSong97/junit-bank/commit/05e37b9235f3ae6a339b51374e113670e7cd8b46) [4da66b7](https://github.com/JasonSong97/junit-bank/commit/4da66b710bcfd1f98715416f5566ae12cc8813a0)
 - 회원가입 컨트롤러 AOP 및 유효성 검사 처리 (23/8/4) - `commit` : [96f2342](https://github.com/JasonSong97/junit-bank/commit/96f2342e8556af39d7c77522c36f487e990b5e70)
+- 회원가입 (23/8/4) - `commit` : [3cb3719](https://github.com/JasonSong97/junit-bank/commit/3cb37198f650bbece3285b4821ffc045f3f2260b) [8903bc2](https://github.com/JasonSong97/junit-bank/commit/8903bc2b283e5cc88e172ca8545c5ec05233d1ad) [0ae59bd](https://github.com/JasonSong97/junit-bank/commit/0ae59bda7bdfcb660b9fe2bcdccc1298b503cfff)
 - SecurityConfig 세팅 (23/8/3) - `commit` : [293a4c3](https://github.com/JasonSong97/junit-bank/commit/293a4c3c05496df277eb918e7827977825892369)
 
 

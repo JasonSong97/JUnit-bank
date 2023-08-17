@@ -16,13 +16,11 @@
 </p>
 <h2 align=center>ATM처럼 사용할 수 있는 CSR 기반의 Bank Application 💵, JUnit Bank</h2>
 
-## 블로그 일지
+## 블로그 일지 및 기록
 
 ### 💎 [JUnit Bank 블로그 기록](https://velog.io/@jaegeunsong_1997/series/SSR-%EA%B8%B0%EB%B0%98-JunitBank-Application)
 
-## 새롭게 알게된 기록
-
-### 💎 [노션 지식 기록](https://www.notion.so/8218ffb7495a46cdb9d093f02f07fc2c?pvs=4)
+### 💎 [노션 기록](https://www.notion.so/8218ffb7495a46cdb9d093f02f07fc2c?pvs=4)
 
 ## UI
 ### Login, Join
@@ -177,6 +175,12 @@
 
 <br/>
 
+## Usage
+
+```sh
+$ ./gradlew clean build
+```
+
 ## ERD
 ![erd](https://github.com/JasonSong97/junit-bank/assets/107292103/2c4eb090-d3d2-4be0-8772-7457eca2780a)
 
@@ -199,8 +203,8 @@
 - JWT Filter 등록 (23/8/4) - `commit` : [05e37b9](https://github.com/JasonSong97/junit-bank/commit/05e37b9235f3ae6a339b51374e113670e7cd8b46)
 - JWT Filter 세팅 (23/8/4) - `commit` : [076b84a](https://github.com/JasonSong97/junit-bank/commit/076b84a7d1742b7b43b36eeadfd22b97aac7b129)
 - JWT 기본 세팅 (23/8/4) - `commit` : [c149be6](https://github.com/JasonSong97/junit-bank/commit/c149be61f67a813c800a58ec98d2e161bdba8682)
-- 회원가입 컨트롤러 AOP 및 유효성 검사 처 (23/8/4) - `commit` : [96f2342](https://github.com/JasonSong97/junit-bank/commit/96f2342e8556af39d7c77522c36f487e990b5e70)
-- SecurityConfig 세 (23/8/3) - `commit` : [293a4c3](https://github.com/JasonSong97/junit-bank/commit/293a4c3c05496df277eb918e7827977825892369)
+- 회원가입 컨트롤러 AOP 및 유효성 검사 처리 (23/8/4) - `commit` : [96f2342](https://github.com/JasonSong97/junit-bank/commit/96f2342e8556af39d7c77522c36f487e990b5e70)
+- SecurityConfig 세팅 (23/8/3) - `commit` : [293a4c3](https://github.com/JasonSong97/junit-bank/commit/293a4c3c05496df277eb918e7827977825892369)
 
 
 <br/>

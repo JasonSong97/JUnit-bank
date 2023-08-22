@@ -136,7 +136,7 @@
 
 ## API Docs
 
-### 💎 [RESTDocs - API 명세서](src/main/resources/static/docs/api-docs.html)
+### 💎 [RESTDocs - API 명세서](https://jasonsong97.github.io/JUnit-bank/src/main/resources/static/docs/api-docs.html)
 
 <br/>
 

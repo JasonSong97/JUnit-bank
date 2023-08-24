@@ -214,7 +214,7 @@ $ ./gradlew clean build
 
 <br/>
 
-## Author & Role
+## Next Plan
 
 - 앞으로 추가해야 할 사항
   - CI/CD 추가 후 실 배포
